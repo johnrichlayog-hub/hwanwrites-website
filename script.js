@@ -38,10 +38,14 @@ document.addEventListener("keydown", function (event) {
 
 });
 
-document.getElementById("image-viewer").addEventListener("click", function (event) {
+const imageViewer = document.getElementById("image-viewer");
 
-    if (event.target === this) {
-        closeImage();
-    }
+if (imageViewer) {
+    imageViewer.addEventListener("click", function (event) {
 
-});
+        if (event.target === this) {
+            closeImage();
+        }
+
+    });
+}
