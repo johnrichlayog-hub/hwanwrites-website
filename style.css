@@ -4,7 +4,7 @@
     --white: #f4f2ee;
     --light-background: #202020;
     --border-color: #353535;
-    --accent-color: #c58b5a;
+    --accent-color: #157a28;
 }
 
 /* =========================
@@ -139,6 +139,7 @@ nav {
     font-size: 76px;
     font-weight: 700;
     letter-spacing: -2px;
+    line-height: 1.05;
     margin-bottom: 25px;
 }
 
@@ -146,6 +147,7 @@ nav {
     max-width: 600px;
     margin: 0 auto 35px;
     font-size: 18px;
+    line-height: 1.7;
     color: var(--secondary-color);
 }
 
@@ -215,12 +217,14 @@ nav {
     flex: 1;
     text-align: left;
     border: 1px solid var(--border-color);
+    border-radius: 8px;
     transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
 .service-card h3 {
-    font-size: 23px;
+    font-size: 22px;
     margin-bottom: 15px;
+    color: var(--primary-color);
 }
 
 .service-card p {
@@ -230,9 +234,9 @@ nav {
 }
 
 .service-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-    border-color: #bbbbbb;
+    transform: translateY(-6px);
+    border-color: var(--accent-color);
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.25);
 }
 
 /* =========================
@@ -240,8 +244,8 @@ nav {
 ========================= */
 
 .portfolio {
-    padding: 120px 8%;
-    background-color: var(--white);
+    padding: 110px 8%;
+    background-color: var(--light-background);
 }
 
 .portfolio .section-heading {
@@ -337,7 +341,7 @@ nav {
 ========================= */
 
 .contact {
-    padding: 130px 8%;
+    padding: 110px 8%;
     background-color: var(--primary-color);
     color: var(--white);
     text-align: center;
@@ -406,10 +410,34 @@ footer p {
    RESPONSIVE DESIGN
 ========================= */
 
-@media (max-width: 768px) {
+ @media (max-width: 768px) {
 
-    .contact h2 {
-        font-size: 38px;
+    .hero {
+        min-height: auto;
+        padding: 100px 6%;
+    }
+
+    .hero h1 {
+        font-size: 52px;
+        letter-spacing: -1px;
+    }
+
+    .hero-description {
+        font-size: 16px;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .hero .button {
+        width: 220px;
+        text-align: center;
+    }
+
+    .services-container {
+        flex-direction: column;
     }
 
     .feature-container {
@@ -422,6 +450,32 @@ footer p {
 
     .feature-card {
         text-align: left;
+    }
+
+    .contact h2 {
+        font-size: 38px;
+    }
+
+    .profile-hero-content {
+        flex-direction: column;
+        gap: 50px;
+        text-align: center;
+    }
+
+    .profile-intro h1 {
+        font-size: 48px;
+    }
+
+    .profile-photo img {
+        margin: 0 auto;
+    }
+
+    .certificate-container {
+        grid-template-columns: 1fr;
+    }
+
+    .portfolio-container {
+        grid-template-columns: 1fr;
     }
 
 }
@@ -770,14 +824,12 @@ footer p {
     max-width: 420px;
     aspect-ratio: 4 / 5;
     object-fit: cover;
-    object-position: center 80%;
+    object-position: center;
     display: block;
     margin-left: auto;
     border: 1px solid var(--border-color);
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
-    transform: scale(1.15);
 }
-
 
 /* MY JOURNEY */
 .profile-journey {
@@ -1540,6 +1592,7 @@ button {
 .hero-buttons {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 14px;
     margin-top: 30px;
     flex-wrap: wrap;
@@ -1607,6 +1660,8 @@ nav {
 
 .nav-links {
     margin-left: auto;
+    padding-right: 0;
+    transform: translateX(30px);
 }
 
 /* SERVICE CARD NUMBERS */
@@ -1625,8 +1680,11 @@ nav {
 }
 
 .service-card p {
-    line-height: 1.8;
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--secondary-color);
 }
+
 /* SERVICES SPACING */
 
 .services {
@@ -1637,12 +1695,11 @@ nav {
     margin-bottom: 55px;
 }
 
-.service-container {
-    max-width: 1100px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
+.services-container {
+    max-width: 1200px;
+    margin: 50px auto 0;
+    display: flex;
+    gap: 24px;
 }
 
 .service-card {
@@ -1653,6 +1710,7 @@ nav {
 
 .how-it-works {
     padding: 110px 8%;
+    background-color: var(--light-background);
 }
 
 .how-it-works .section-heading {
