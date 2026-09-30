@@ -49,3 +49,39 @@ if (imageViewer) {
 
     });
 }
+
+/* ================================
+   PREMIUM SCROLL REVEAL
+   ================================ */
+
+const revealElements = document.querySelectorAll(
+    ".section-heading, .service-card, .process-card, .feature-card, .portfolio-card, .milestone-card, .tools-group, .certificate-card"
+);
+
+revealElements.forEach(function (element, index) {
+    element.classList.add("reveal");
+
+    if (index % 3 === 1) {
+        element.classList.add("reveal-delay-1");
+    } else if (index % 3 === 2) {
+        element.classList.add("reveal-delay-2");
+    }
+});
+
+const revealObserver = new IntersectionObserver(
+    function (entries) {
+        entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("active");
+                revealObserver.unobserve(entry.target);
+            }
+        });
+    },
+    {
+        threshold: 0.12
+    }
+);
+
+revealElements.forEach(function (element) {
+    revealObserver.observe(element);
+});
