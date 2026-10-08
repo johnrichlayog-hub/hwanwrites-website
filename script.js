@@ -85,3 +85,373 @@ const revealObserver = new IntersectionObserver(
 revealElements.forEach(function (element) {
     revealObserver.observe(element);
 });
+
+/* =========================================
+   FLOATING CERTIFICATE CAROUSEL
+   ========================================= */
+
+const certificateDock = document.querySelector(".certificate-dock");
+const certificateToggle = document.getElementById("certificate-toggle");
+const certificateClose = document.getElementById("certificate-close");
+const certificateSlides = document.querySelectorAll(".certificate-slide");
+const certificatePrev = document.getElementById("certificate-prev");
+const certificateNext = document.getElementById("certificate-next");
+const certificateCounter = document.getElementById("certificate-counter");
+const certificateCarousel = document.getElementById("certificate-carousel");
+
+const viewerImage = document.getElementById("viewer-image");
+
+const certificateViewerPrev = document.getElementById("certificate-viewer-prev");
+const certificateViewerNext = document.getElementById("certificate-viewer-next");
+const certificateViewerCounter = document.getElementById("certificate-viewer-counter");
+
+let currentCertificate = 0;
+let viewerCertificate = 0;
+
+/* SHOW CERTIFICATE IN PREVIEW */
+
+function showCertificate(index) {
+    if (!certificateSlides.length) return;
+
+    if (index < 0) {
+        currentCertificate = certificateSlides.length - 1;
+    } else if (index >= certificateSlides.length) {
+        currentCertificate = 0;
+    } else {
+        currentCertificate = index;
+    }
+
+    certificateSlides.forEach(function (slide, i) {
+        slide.classList.toggle("active", i === currentCertificate);
+    });
+
+    if (certificateCounter) {
+        certificateCounter.textContent =
+            (currentCertificate + 1) + " / " + certificateSlides.length;
+    }
+}
+
+/* OPEN LARGE CERTIFICATE VIEWER */
+
+function openCertificateViewer(index) {
+
+    if (!certificateSlides.length || !imageViewer || !viewerImage) {
+        return;
+    }
+
+    if (index < 0) {
+        viewerCertificate = certificateSlides.length - 1;
+    } else if (index >= certificateSlides.length) {
+        viewerCertificate = 0;
+    } else {
+        viewerCertificate = index;
+    }
+
+    const certificateImage =
+        certificateSlides[viewerCertificate].querySelector("img");
+
+    if (!certificateImage) return;
+
+    viewerImage.src = certificateImage.src;
+    viewerImage.alt = certificateImage.alt;
+
+    if (certificateViewerCounter) {
+        certificateViewerCounter.textContent =
+            (viewerCertificate + 1) + " / " + certificateSlides.length;
+    }
+
+    imageViewer.classList.add("active");
+}
+
+    if (certificateViewerPrev) {
+    certificateViewerPrev.addEventListener("click", function (event) {
+        event.stopPropagation();
+        previousViewerCertificate();
+    });
+}
+
+if (certificateViewerNext) {
+    certificateViewerNext.addEventListener("click", function (event) {
+        event.stopPropagation();
+        nextViewerCertificate();
+    });
+}
+
+/* NEXT CERTIFICATE IN LARGE VIEWER */
+
+function nextViewerCertificate() {
+    openCertificateViewer(viewerCertificate + 1);
+}
+
+/* PREVIOUS CERTIFICATE IN LARGE VIEWER */
+
+function previousViewerCertificate() {
+    openCertificateViewer(viewerCertificate - 1);
+}
+
+/* CERTIFICATE BUTTON */
+
+if (certificateToggle && certificateDock) {
+
+    certificateToggle.addEventListener("click", function (event) {
+        event.stopPropagation();
+        certificateDock.classList.add("open");
+    });
+
+    document.addEventListener("click", function (event) {
+
+        if (!certificateDock.contains(event.target)) {
+            certificateDock.classList.remove("open");
+        }
+
+    });
+}
+
+/* PREVIEW NAVIGATION */
+
+if (certificatePrev) {
+    certificatePrev.addEventListener("click", function (event) {
+        event.stopPropagation();
+        showCertificate(currentCertificate - 1);
+    });
+}
+
+if (certificateNext) {
+    certificateNext.addEventListener("click", function (event) {
+        event.stopPropagation();
+        showCertificate(currentCertificate + 1);
+    });
+}
+
+/* CLICK CERTIFICATE PREVIEW */
+
+certificateSlides.forEach(function (slide, index) {
+
+    const image = slide.querySelector("img");
+
+    if (image) {
+        image.onclick = function (event) {
+            event.stopPropagation();
+
+            viewerCertificate = index;
+            openCertificateViewer(viewerCertificate);
+        };
+    }
+
+});
+
+/* SWIPE SUPPORT FOR PREVIEW */
+
+let certificateTouchStartX = 0;
+let certificateTouchEndX = 0;
+
+if (certificateCarousel) {
+
+    certificateCarousel.addEventListener("touchstart", function (event) {
+        certificateTouchStartX = event.changedTouches[0].screenX;
+    }, { passive: true });
+
+    certificateCarousel.addEventListener("touchend", function (event) {
+
+        certificateTouchEndX = event.changedTouches[0].screenX;
+
+        const swipeDistance =
+            certificateTouchEndX - certificateTouchStartX;
+
+        if (Math.abs(swipeDistance) < 40) {
+            return;
+        }
+
+        if (swipeDistance < 0) {
+            showCertificate(currentCertificate + 1);
+        } else {
+            showCertificate(currentCertificate - 1);
+        }
+
+    }, { passive: true });
+}
+
+/* LARGE VIEWER KEYBOARD NAVIGATION */
+
+document.addEventListener("keydown", function (event) {
+
+    if (!imageViewer || !imageViewer.classList.contains("active")) {
+        return;
+    }
+
+    if (event.key === "ArrowRight") {
+        nextViewerCertificate();
+    }
+
+    if (event.key === "ArrowLeft") {
+        previousViewerCertificate();
+    }
+
+});
+
+/* SWIPE SUPPORT FOR LARGE VIEWER */
+
+let viewerTouchStartX = 0;
+let viewerTouchEndX = 0;
+
+if (imageViewer) {
+
+    imageViewer.addEventListener("touchstart", function (event) {
+        viewerTouchStartX = event.changedTouches[0].screenX;
+    }, { passive: true });
+
+    imageViewer.addEventListener("touchend", function (event) {
+
+        viewerTouchEndX = event.changedTouches[0].screenX;
+
+        const swipeDistance =
+            viewerTouchEndX - viewerTouchStartX;
+
+        if (Math.abs(swipeDistance) < 40) {
+            return;
+        }
+
+        if (swipeDistance < 0) {
+            nextViewerCertificate();
+        } else {
+            previousViewerCertificate();
+        }
+
+    }, { passive: true });
+}
+
+showCertificate(0);
+
+/* =========================================
+   INTERACTIVE SERVICE DETAILS
+   ========================================= */
+
+const serviceDetails = {
+    research: {
+        number: "01",
+        title: "Research Assistance",
+        items: [
+            "Research Title and Topic Assistance",
+            "Research Proposal Support",
+            "Questionnaire Construction",
+            "Data Encoding and Cleaning",
+            "Statistical Analysis",
+            "Research Writing and Formatting",
+            "APA 7 Formatting",
+            "Reference and Citation Checking",
+            "Research Presentation and Defense PPT"
+        ]
+    },
+
+    academic: {
+        number: "02",
+        title: "Academic Services",
+        items: [
+            "Essays",
+            "Reflection and Reaction Papers",
+            "Position and Critique Papers",
+            "Case Studies",
+            "Concept Papers",
+            "Academic Reports",
+            "Presentation Slides",
+            "Proofreading and Editing",
+            "Paraphrasing and Academic Formatting"
+        ]
+    },
+
+    documents: {
+        number: "03",
+        title: "Professional Documents",
+        items: [
+            "Resume and CV",
+            "Cover and Application Letters",
+            "Letters of Intent and Request",
+            "Personal Statements and SOPs",
+            "Business Plans",
+            "Event Plans",
+            "Professional Presentations",
+            "Document Formatting and Organization"
+        ]
+    },
+
+    web: {
+        number: "04",
+        title: "Web Development",
+        items: [
+            "Landing Pages",
+            "Portfolio Websites",
+            "HTML and CSS Development",
+            "JavaScript Interactions",
+            "Responsive Website Layouts",
+            "Website Styling and Customization",
+            "Basic Website Setup and Deployment"
+        ]
+    },
+
+    design: {
+        number: "05",
+        title: "Graphic Design",
+        items: [
+            "Pubmats",
+            "Social Media Graphics",
+            "Posters and Flyers",
+            "Presentation Design",
+            "Branding Materials",
+            "Promotional Visuals",
+            "Simple Layout and Visual Design"
+        ]
+    },
+
+    more: {
+        number: "06",
+        title: "And Many More",
+        items: [
+            "Content Creation",
+            "Digital Marketing Assistance",
+            "Presentation Design",
+            "Creative and Digital Projects",
+            "Custom Document Requests",
+            "Other project-based assistance"
+        ]
+    }
+};
+
+const serviceCards = document.querySelectorAll(".service-card-interactive");
+const serviceDetailsBox = document.getElementById("service-details");
+const serviceDetailsClose = document.getElementById("service-details-close");
+const serviceDetailsNumber = document.getElementById("service-details-number");
+const serviceDetailsTitle = document.getElementById("service-details-title");
+const serviceDetailsList = document.getElementById("service-details-list");
+
+serviceCards.forEach(function (card) {
+
+    card.addEventListener("click", function () {
+
+        const service = serviceDetails[card.dataset.service];
+
+        serviceDetailsNumber.textContent = service.number;
+        serviceDetailsTitle.textContent = service.title;
+
+        serviceDetailsList.innerHTML = service.items
+            .map(function (item) {
+                return `<p>↳ ${item}</p>`;
+            })
+            .join("");
+
+        serviceDetailsBox.classList.add("active");
+
+    });
+
+});
+
+serviceDetailsClose.addEventListener("click", function () {
+    serviceDetailsBox.classList.remove("active");
+});
+
+serviceDetailsBox.addEventListener("click", function (event) {
+
+    if (event.target === serviceDetailsBox) {
+        serviceDetailsBox.classList.remove("active");
+    }
+
+});

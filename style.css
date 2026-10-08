@@ -2075,3 +2075,1108 @@ footer p {
         animation: none;
     }
 }
+
+/* =========================================
+   FLOATING CERTIFICATE CAROUSEL
+   ========================================= */
+
+.certificate-dock {
+    position: fixed;
+    right: 28px;
+    bottom: 28px;
+    z-index: 999;
+    font-family: inherit;
+}
+
+.certificate-toggle {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 13px 18px;
+    border: 1px solid rgba(21, 122, 40, 0.65);
+    border-radius: 8px;
+    background: #191919;
+    color: var(--white);
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.4px;
+    cursor: pointer;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+    transition: all 0.3s ease;
+}
+
+.certificate-toggle:hover {
+    background: var(--accent-color);
+    color: #171717;
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(21, 122, 40, 0.18);
+}
+
+.certificate-toggle-icon {
+    font-size: 16px;
+}
+
+.certificate-panel {
+    position: absolute;
+    right: 0;
+    bottom: 58px;
+    width: 340px;
+    padding: 22px;
+    background: #191919;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(15px) scale(0.98);
+    transform-origin: bottom right;
+    transition:
+        opacity 0.3s ease,
+        visibility 0.3s ease,
+        transform 0.3s ease;
+}
+
+.certificate-dock.open .certificate-panel {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+}
+
+.certificate-panel-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 18px;
+}
+
+.certificate-panel-header .section-label {
+    margin-bottom: 5px;
+}
+
+.certificate-panel-header h3 {
+    margin: 0;
+    color: var(--white);
+    font-size: 20px;
+}
+
+.certificate-close {
+    width: 32px;
+    height: 32px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    background: transparent;
+    color: var(--secondary-color);
+    font-size: 20px;
+    line-height: 1;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.certificate-close:hover {
+    border-color: var(--accent-color);
+    color: var(--accent-color);
+}
+
+.certificate-carousel {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    touch-action: pan-y;
+}
+
+.certificate-slide {
+    display: none;
+}
+
+.certificate-slide.active {
+    display: block;
+    animation: certificateSlideIn 0.35s ease;
+}
+
+.certificate-slide img {
+    display: block;
+    width: 100%;
+    height: 245px;
+    object-fit: contain;
+    background: #111111;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.certificate-slide img:hover {
+    transform: scale(1.015);
+    border-color: rgba(21, 122, 40, 0.55);
+}
+
+.certificate-info {
+    padding-top: 14px;
+}
+
+.certificate-info h4 {
+    margin: 0 0 5px;
+    color: var(--white);
+    font-size: 15px;
+    line-height: 1.4;
+}
+
+.certificate-info p {
+    margin: 0;
+    color: var(--secondary-color);
+    font-size: 12px;
+}
+
+.certificate-navigation {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 16px;
+}
+
+.certificate-nav-button {
+    width: 34px;
+    height: 34px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    background: transparent;
+    color: var(--white);
+    font-size: 17px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.certificate-nav-button:hover {
+    background: var(--accent-color);
+    border-color: var(--accent-color);
+    color: #171717;
+}
+
+#certificate-counter {
+    color: var(--secondary-color);
+    font-size: 12px;
+    letter-spacing: 1px;
+}
+
+.certificate-hint {
+    margin: 12px 0 0;
+    color: #777;
+    font-size: 10px;
+    text-align: center;
+}
+
+@keyframes certificateSlideIn {
+    from {
+        opacity: 0;
+        transform: translateX(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+    .certificate-dock {
+        right: 16px;
+        bottom: 16px;
+    }
+
+    .certificate-toggle {
+        padding: 12px 15px;
+    }
+
+    .certificate-panel {
+        right: -2px;
+        bottom: 55px;
+        width: min(320px, calc(100vw - 32px));
+        padding: 18px;
+    }
+
+    .certificate-slide img {
+        height: 220px;
+    }
+}
+
+/* =========================================
+   VISIBLE FLOATING CERTIFICATE
+   ========================================= */
+
+.certificate-dock {
+    position: fixed;
+    right: 28px;
+    bottom: 28px;
+    z-index: 999;
+}
+
+.certificate-panel {
+    position: relative;
+    right: auto;
+    bottom: auto;
+
+    width: 360px;
+    padding: 16px;
+
+    background: #191919;
+    border: 1px solid rgba(21, 122, 40, 0.55);
+    border-radius: 8px;
+
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.45);
+
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+}
+
+.certificate-carousel {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    touch-action: pan-y;
+}
+
+.certificate-slide {
+    display: none;
+}
+
+.certificate-slide.active {
+    display: block;
+    animation: certificateSlideIn 0.35s ease;
+}
+
+.certificate-slide img {
+    display: block;
+    width: 100%;
+    height: 255px;
+    object-fit: contain;
+
+    background: #111111;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+
+    cursor: pointer;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.certificate-slide img:hover {
+    transform: scale(1.015);
+    border-color: var(--accent-color);
+}
+
+.certificate-navigation {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-top: 9px;
+}
+
+.certificate-nav-button {
+    width: 30px;
+    height: 30px;
+
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+
+    background: transparent;
+    color: var(--white);
+
+    font-size: 15px;
+    cursor: pointer;
+
+    transition: all 0.25s ease;
+}
+
+.certificate-nav-button:hover {
+    background: var(--accent-color);
+    border-color: var(--accent-color);
+    color: #171717;
+}
+
+#certificate-counter {
+    color: var(--secondary-color);
+    font-size: 11px;
+    letter-spacing: 1px;
+}
+
+@keyframes certificateSlideIn {
+    from {
+        opacity: 0;
+        transform: translateX(12px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+    .certificate-dock {
+        right: 14px;
+        bottom: 14px;
+    }
+
+    .certificate-panel {
+        width: 220px;
+        padding: 9px;
+    }
+
+    .certificate-slide img {
+        height: 155px;
+    }
+
+}
+
+/* =========================================
+   HOVER CERTIFICATE PREVIEW
+   ========================================= */
+
+.certificate-dock {
+    position: fixed;
+    right: 28px;
+    bottom: 28px;
+    z-index: 999;
+}
+
+/* BUTTON */
+
+.certificate-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+
+    min-width: 145px;
+    height: 48px;
+    padding: 0 18px;
+
+    border: 1px solid rgba(21, 122, 40, 0.65);
+    border-radius: 7px;
+
+    background: #191919;
+    color: var(--white);
+
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+
+    transition:
+        background 0.25s ease,
+        color 0.25s ease,
+        transform 0.25s ease,
+        border-color 0.25s ease;
+}
+
+.certificate-toggle:hover {
+    background: var(--accent-color);
+    color: #171717;
+    border-color: var(--accent-color);
+    transform: translateY(-2px);
+}
+
+.certificate-toggle-icon {
+    font-size: 15px;
+}
+
+/* CERTIFICATE PREVIEW */
+
+.certificate-panel {
+    position: absolute;
+
+    right: 0;
+    bottom: 58px;
+
+    width: 315px;
+    padding: 12px;
+
+    background: #191919;
+
+    border: 1px solid rgba(21, 122, 40, 0.55);
+    border-radius: 8px;
+
+    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.45);
+
+    opacity: 0;
+    visibility: hidden;
+
+    transform: translateY(10px) scale(0.97);
+    transform-origin: bottom right;
+
+    transition:
+        opacity 0.25s ease,
+        visibility 0.25s ease,
+        transform 0.25s ease;
+}
+
+/* SHOW WHEN HOVERING THE BUTTON OR PREVIEW */
+
+.certificate-dock:hover .certificate-panel {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+}
+
+/* CERTIFICATE IMAGE */
+
+.certificate-carousel {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    touch-action: pan-y;
+}
+
+.certificate-slide {
+    display: none;
+}
+
+.certificate-slide.active {
+    display: block;
+    animation: certificateFlash 0.35s ease;
+}
+
+.certificate-slide img {
+    display: block;
+
+    width: 100%;
+    height: 215px;
+
+    object-fit: contain;
+
+    background: #111111;
+
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease;
+}
+
+.certificate-slide img:hover {
+    transform: scale(1.015);
+    border-color: var(--accent-color);
+}
+
+/* NAVIGATION */
+
+.certificate-navigation {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-top: 9px;
+}
+
+.certificate-nav-button {
+    width: 32px;
+    height: 30px;
+
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+
+    background: transparent;
+    color: var(--white);
+
+    font-size: 15px;
+
+    cursor: pointer;
+
+    transition: all 0.25s ease;
+}
+
+.certificate-nav-button:hover {
+    background: var(--accent-color);
+    border-color: var(--accent-color);
+    color: #171717;
+}
+
+#certificate-counter {
+    color: var(--secondary-color);
+    font-size: 11px;
+    letter-spacing: 1px;
+}
+
+/* PREVIEW ANIMATION */
+
+@keyframes certificateFlash {
+
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+    .certificate-dock {
+        right: 14px;
+        bottom: 14px;
+    }
+
+    .certificate-toggle {
+        min-width: 135px;
+        height: 46px;
+    }
+
+    .certificate-panel {
+        width: 260px;
+    }
+
+    .certificate-slide img {
+        height: 175px;
+    }
+
+}
+
+.certificate-dock.open .certificate-panel {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+}
+
+/* PROFILE PAGE - FLOATING BUTTON SPACING */
+
+.profile-page .certificate-dock {
+    bottom: 28px;
+    z-index: 1100;
+}
+
+.profile-page .back-to-top {
+    bottom: 90px;
+    z-index: 1000;
+}
+
+/* =========================================
+   LARGE CERTIFICATE VIEWER CONTROLS
+   ========================================= */
+
+.certificate-viewer-prev,
+.certificate-viewer-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 48px;
+    height: 48px;
+    border: 1px solid rgba(21, 122, 40, 0.65);
+    border-radius: 50%;
+    background: rgba(25, 25, 25, 0.9);
+    color: var(--white);
+    font-family: inherit;
+    font-size: 22px;
+    cursor: pointer;
+    z-index: 10;
+    transition:
+        background 0.25s ease,
+        color 0.25s ease,
+        border-color 0.25s ease,
+        transform 0.25s ease;
+}
+
+.certificate-viewer-prev {
+    left: 28px;
+}
+
+.certificate-viewer-next {
+    right: 28px;
+}
+
+.certificate-viewer-prev:hover,
+.certificate-viewer-next:hover {
+    background: var(--accent-color);
+    color: #171717;
+    border-color: var(--accent-color);
+}
+
+.certificate-viewer-counter {
+    position: absolute;
+    left: 50%;
+    bottom: 28px;
+    transform: translateX(-50%);
+    padding: 7px 13px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    background: rgba(25, 25, 25, 0.9);
+    color: var(--secondary-color);
+    font-size: 12px;
+    letter-spacing: 1px;
+    z-index: 10;
+}
+
+/* KEEP CERTIFICATE BUTTON CLICKABLE */
+
+.profile-page .certificate-dock {
+    z-index: 1100;
+}
+
+/* =========================================
+   INTERACTIVE SERVICE CARDS
+   ========================================= */
+
+.service-card-interactive {
+    position: relative;
+    min-height: 220px;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.service-card-interactive::after {
+    content: "";
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    right: -45px;
+    bottom: -45px;
+    background: rgba(21, 122, 40, 0.08);
+    border-radius: 50%;
+    transition: all 0.35s ease;
+}
+
+.service-card-interactive:hover {
+    transform: translateY(-6px);
+    border-color: rgba(21, 122, 40, 0.7);
+    box-shadow: 0 14px 35px rgba(0, 0, 0, 0.3);
+}
+
+.service-card-interactive:hover::after {
+    width: 180px;
+    height: 180px;
+    background: rgba(21, 122, 40, 0.12);
+}
+
+.service-card-interactive h3 {
+    position: relative;
+    z-index: 2;
+    max-width: 240px;
+}
+
+.service-card-prompt {
+    position: absolute;
+    right: 24px;
+    bottom: 22px;
+    margin: 0;
+    color: var(--accent-color);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.8px;
+    z-index: 3;
+    transition: transform 0.3s ease;
+}
+
+.service-card-interactive:hover .service-card-prompt {
+    transform: translateX(-3px);
+}
+
+/* =========================================
+   SERVICE DETAILS
+   ========================================= */
+
+.service-details {
+    position: fixed;
+    inset: 0;
+    z-index: 5000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    background: rgba(0, 0, 0, 0.72);
+    backdrop-filter: blur(8px);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.service-details.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.service-details-content {
+    position: relative;
+    width: min(620px, 100%);
+    max-height: 80vh;
+    overflow-y: auto;
+    padding: 42px;
+    background: #191919;
+    border: 1px solid rgba(21, 122, 40, 0.6);
+    border-radius: 8px;
+    box-shadow: 0 25px 70px rgba(0, 0, 0, 0.55);
+    transform: translateY(20px) scale(0.97);
+    transition: transform 0.35s ease;
+}
+
+.service-details.active .service-details-content {
+    transform: translateY(0) scale(1);
+}
+
+.service-details-close {
+    position: absolute;
+    top: 16px;
+    right: 18px;
+    width: 36px;
+    height: 36px;
+    border: 1px solid var(--border-color);
+    border-radius: 50%;
+    background: transparent;
+    color: var(--white);
+    font-size: 22px;
+    cursor: pointer;
+}
+
+.service-details-close:hover {
+    border-color: var(--accent-color);
+    color: var(--accent-color);
+}
+
+.service-details-number {
+    display: block;
+    margin-bottom: 12px;
+    color: var(--accent-color);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.service-details-content h3 {
+    margin-bottom: 25px;
+    color: var(--white);
+    font-size: 28px;
+}
+
+#service-details-list {
+    display: grid;
+    gap: 10px;
+}
+
+#service-details-list p {
+    margin: 0;
+    padding: 12px 15px;
+    border-left: 2px solid var(--accent-color);
+    background: #202020;
+    color: var(--secondary-color);
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+/* =========================================
+   SERVICE CARDS - 3 COLUMNS
+   ========================================= */
+
+.service-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+
+/* =========================================
+   AND MANY MORE CARD
+   ========================================= */
+
+.service-card-more {
+    cursor: default;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.service-card-more::after {
+    display: none;
+}
+
+.service-card-more:hover {
+    transform: none;
+    border-color: var(--border-color);
+    box-shadow: none;
+}
+
+.service-card-more h3 {
+    margin-bottom: 16px;
+}
+
+.service-more-text {
+    max-width: 430px;
+    margin: 0;
+    color: var(--secondary-color);
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+.service-more-text strong {
+    color: var(--white);
+    font-size: 14px;
+}
+
+.service-card-more .service-card-prompt {
+    color: var(--secondary-color);
+    cursor: default;
+}
+
+/* =========================================
+   SERVICE CARD POLISH
+   ========================================= */
+
+.service-card-interactive {
+    min-height: 230px;
+}
+
+.service-card-interactive h3 {
+    font-size: 22px;
+    line-height: 1.25;
+}
+
+.service-card-prompt {
+    letter-spacing: 0.6px;
+}
+
+.service-card-more {
+    min-height: 230px;
+}
+
+/* =========================================
+   SERVICE DETAILS LIST POLISH
+   ========================================= */
+
+#service-details-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+#service-details-list p {
+    display: flex;
+    align-items: center;
+    min-height: 48px;
+    padding: 12px 14px;
+    margin: 0;
+    border: 1px solid var(--border-color);
+    border-left: 2px solid var(--accent-color);
+    border-radius: 4px;
+    background: #202020;
+    color: var(--secondary-color);
+    font-size: 13px;
+    line-height: 1.5;
+    transition: all 0.25s ease;
+}
+
+#service-details-list p:hover {
+    border-color: rgba(21, 122, 40, 0.55);
+    color: var(--white);
+    transform: translateX(3px);
+}
+
+@media (max-width: 768px) {
+
+    .service-container {
+        grid-template-columns: 1fr;
+    }
+
+    #service-details-list {
+        grid-template-columns: 1fr;
+    }
+
+    .service-details-content {
+        padding: 35px 22px;
+    }
+
+}/* =========================================
+   SERVICES SECTION SPACING
+   ========================================= */
+
+.services .section-heading {
+    margin-bottom: 45px;
+}
+
+.services .service-container {
+    row-gap: 24px;
+}
+
+.service-card-interactive,
+.service-card-more {
+    min-height: 220px;
+}
+
+/* =========================================
+   SERVICE CARD HIERARCHY
+   ========================================= */
+
+.service-card-interactive .service-number {
+    font-size: 12px;
+    letter-spacing: 2px;
+}
+
+.service-card-interactive h3,
+.service-card-more h3 {
+    margin-top: 8px;
+}
+
+.service-card-interactive:hover .service-number {
+    color: var(--white);
+}
+
+.service-card-interactive:hover h3 {
+    color: var(--accent-color);
+}
+
+.service-card-more .service-number {
+    color: var(--secondary-color);
+}
+
+/* =========================================
+   PREMIUM SERVICE POPUP ANIMATION
+   ========================================= */
+
+.service-details.active .service-details-content {
+    animation: servicePopupIn 0.4s ease forwards;
+}
+
+@keyframes servicePopupIn {
+    0% {
+        opacity: 0;
+        transform: translateY(25px) scale(0.96);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.service-details.active #service-details-list p {
+    animation: serviceItemIn 0.35s ease both;
+}
+
+.service-details.active #service-details-list p:nth-child(1) {
+    animation-delay: 0.05s;
+}
+
+.service-details.active #service-details-list p:nth-child(2) {
+    animation-delay: 0.08s;
+}
+
+.service-details.active #service-details-list p:nth-child(3) {
+    animation-delay: 0.11s;
+}
+
+.service-details.active #service-details-list p:nth-child(4) {
+    animation-delay: 0.14s;
+}
+
+.service-details.active #service-details-list p:nth-child(5) {
+    animation-delay: 0.17s;
+}
+
+.service-details.active #service-details-list p:nth-child(6) {
+    animation-delay: 0.20s;
+}
+
+@keyframes serviceItemIn {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* =========================================
+   AND MANY MORE - CONTACT LINK
+   ========================================= */
+
+.service-card-more .service-card-prompt {
+    display: block;
+    width: fit-content;
+    color: var(--secondary-color);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.8px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.service-card-more .service-card-prompt:hover {
+    color: var(--accent-color);
+    transform: translateX(-3px);
+}
+
+/* HOW IT WORKS - PREMIUM POLISH */
+
+.how-it-works .section-heading {
+    margin-bottom: 45px;
+}
+
+.process-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.process-card {
+    position: relative;
+    min-height: 245px;
+    padding: 30px 26px;
+    background-color: #191919;
+    border: 1px solid var(--border-color);
+    color: var(--white);
+    transition: all 0.3s ease;
+}
+
+.process-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(21, 122, 40, 0.55);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+}
+
+.process-number {
+    display: block;
+    margin-bottom: 24px;
+    color: var(--accent-color);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 2px;
+}
+
+.process-card h3 {
+    margin-bottom: 14px;
+    color: var(--white);
+    font-size: 20px;
+    line-height: 1.3;
+}
+
+.process-card p {
+    margin: 0;
+    color: var(--secondary-color);
+    font-size: 13px;
+    line-height: 1.7;
+}

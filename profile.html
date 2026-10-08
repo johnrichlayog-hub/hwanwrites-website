@@ -12,12 +12,12 @@
 
     <meta name="theme-color" content="#222222">
 
-    <title>Profile | John Rich Layog</title>
+    <title>Profile | John Rich I. Layog</title>
 
     <link rel="stylesheet" href="style.css">
 </head>
 
-<body>
+<body class="profile-page">
 
     <header>
         <nav>
@@ -51,7 +51,7 @@
 
                     <h1>
                         Hi, I'm<br>
-                        John Rich Layog
+                        JOHN RICH I. LAYOG
                     </h1>
 
                     <h2>
@@ -340,97 +340,98 @@
         </section>
 
 
-        <!-- CERTIFICATES -->
-<section class="profile-certificates">
+        <!-- FLOATING CERTIFICATES -->
+<div class="certificate-dock">
 
-    <div class="section-heading">
-        <p class="section-label">CREDENTIALS & CERTIFICATIONS</p>
+    <button
+        class="certificate-toggle"
+        id="certificate-toggle"
+        aria-label="View certificates"
+    >
+        <span>Certificates</span>
+        <span class="certificate-toggle-icon">↗</span>
+    </button>
 
-        <h2>
-            Certifications & credentials.
-        </h2>
+    <div class="certificate-panel">
 
-        <p>
-            A collection of certificates, training credentials,
-            and recognitions earned along the way.
-        </p>
+        <div class="certificate-carousel" id="certificate-carousel">
+
+            <div class="certificate-slide active">
+                <img
+                    src="images/EnglishWritingSkills.jpg.jpg"
+                    alt="English Writing Skills Certificate"
+                >
+            </div>
+
+            <div class="certificate-slide">
+                <img
+                    src="images/MicrosoftDigitalLiteracy.jpg.jpg"
+                    alt="Microsoft Digital Literacy Certificate"
+                >
+            </div>
+
+            <div class="certificate-slide">
+                <img
+                    src="images/MicrosoftCybersecurityCourse.jpg.jpg"
+                    alt="Microsoft Cybersecurity Course Certificate"
+                >
+            </div>
+
+            <div class="certificate-slide">
+                <img
+                    src="images/IntroToVGD.jpg.jpg"
+                    alt="Introduction to Visual Graphic Design Certificate"
+                >
+            </div>
+
+            <div class="certificate-slide">
+                <img
+                    src="images/IntroToDM.jpg.jpg"
+                    alt="Introduction to Digital Marketing Certificate"
+                >
+            </div>
+
+            <div class="certificate-slide">
+                <img
+                    src="images/IntroToCC.jpg.jpg"
+                    alt="Introduction to Content Creation Certificate"
+                >
+            </div>
+
+            <div class="certificate-slide">
+                <img
+                    src="images/ResearchMasteryCourse.jpg.jpg"
+                    alt="Research Mastery Course Certificate"
+                >
+            </div>
+
+        </div>
+
+        <div class="certificate-navigation">
+
+            <button
+                class="certificate-nav-button"
+                id="certificate-prev"
+                aria-label="Previous certificate"
+            >
+                ←
+            </button>
+
+            <span id="certificate-counter">1 / 7</span>
+
+            <button
+                class="certificate-nav-button"
+                id="certificate-next"
+                aria-label="Next certificate"
+            >
+                →
+            </button>
+
+        </div>
+
     </div>
 
-    <div class="certificate-container">
-
-        <div class="certificate-card">
-            <img src="images/EnglishWritingSkills.jpg.jpg"
-                alt="English Writing Skills Certificate"
-                onclick="openImage(this.src)">
-
-            <h3>English Writing Skills</h3>
-            <p>Writing & Communication</p>
-        </div>
-
-
-        <div class="certificate-card">
-            <img src="images/MicrosoftDigitalLiteracy.jpg.jpg"
-                 alt="Microsoft Digital Literacy Certificate"
-                 onclick="openImage(this.src)">
-
-            <h3>Microsoft Digital Literacy</h3>
-            <p>Digital Skills</p>
-        </div>
-
-
-        <div class="certificate-card">
-            <img src="images/MicrosoftCybersecurityCourse.jpg.jpg"
-                 alt="Microsoft Cybersecurity Course Certificate"
-                 onclick="openImage(this.src)">
-
-            <h3>Microsoft Cybersecurity Course</h3>
-            <p>Technology & Digital Skills</p>
-        </div>
-
-
-        <div class="certificate-card">
-            <img src="images/IntroToVGD.jpg.jpg"
-                 alt="Introduction to Visual Graphic Design Certificate"
-                 onclick="openImage(this.src)">
-
-            <h3>Introduction to Visual Graphic Design</h3>
-            <p>Creative & Design Skills</p>
-        </div>
-
-
-        <div class="certificate-card">
-            <img src="images/IntroToDM.jpg.jpg"
-                 alt="Introduction to Digital Marketing Certificate"
-                 onclick="openImage(this.src)">
-
-            <h3>Introduction to Digital Marketing</h3>
-            <p>Marketing & Digital Skills</p>
-        </div>
-
-
-        <div class="certificate-card">
-            <img src="images/IntroToCC.jpg.jpg"
-                 alt="Introduction to Content Creation Certificate"
-                 onclick="openImage(this.src)">
-
-            <h3>Introduction to Content Creation</h3>
-            <p>Creative & Digital Skills</p>
-        </div>
-
-
-        <div class="certificate-card">
-            <img src="images/ResearchMasteryCourse.jpg.jpg"
-                 alt="Research Mastery Course Certificate"
-                 onclick="openImage(this.src)">
-
-            <h3>Research Mastery Course</h3>
-            <p>Research & Academic Skills</p>
-        </div>
-
-    </div>
-
-</section>
-
+</div>
 
         <!-- PHOTO MOMENTS -->
         <section class="profile-gallery">
@@ -511,9 +512,41 @@
     </main>
 
     <div id="image-viewer" class="image-viewer">
-        <button class="image-viewer-close" onclick="closeImage()">×</button>
-        <img id="viewer-image" src="" alt="Preview">
-    </div>
+
+    <button
+        class="image-viewer-close"
+        onclick="closeImage()"
+        aria-label="Close viewer"
+    >
+        ×
+    </button>
+
+    <button
+        class="certificate-viewer-prev"
+        id="certificate-viewer-prev"
+        aria-label="Previous certificate"
+    >
+        ←
+    </button>
+
+    <img id="viewer-image" src="" alt="Preview">
+
+    <button
+        class="certificate-viewer-next"
+        id="certificate-viewer-next"
+        aria-label="Next certificate"
+    >
+        →
+    </button>
+
+    <span
+        class="certificate-viewer-counter"
+        id="certificate-viewer-counter"
+    >
+        1 / 7
+    </span>
+
+</div>
 
     <a href="#top" class="back-to-top">↑</a>
 
