@@ -197,7 +197,7 @@
             </span>
 
             <h3>
-            And Many More
+            and Many More
             </h3>
 
             <p class="service-more-text">
@@ -443,88 +443,76 @@
 
 </section>
 
-        <!-- Portfolio Section -->
-        <section id="portfolio" class="portfolio">
+        
+<!-- Project Showcase -->
+<section id="portfolio" class="portfolio project-showcase">
 
     <div class="section-heading">
-
-        <p class="section-label">
-            SELECTED WORKS
-        </p>
-
-        <h2>
-            A look at the work.
-        </h2>
-
+        <p class="section-label">SELECTED WORKS</p>
+        <h2>Projects & Portfolio.</h2>
         <p>
-            A selection of documents, presentations, and projects
-            prepared through HwanWrites.
+            Explore a selection of work categories showcasing
+            the different capabilities of HwanWrites.
         </p>
+    </div>
+
+    <div class="project-category-grid">
+
+        <a href="portfolio.html?category=research"
+           class="project-category-card">
+            <div class="project-category-image">
+                <img src="images/research.jpg"
+                     alt="Research project preview">
+                <span class="project-category-number">01</span>
+            </div>
+            <div class="project-category-info">
+                <h3>Research Projects</h3>
+                <span>Explore Category ↗</span>
+            </div>
+        </a>
+
+        <a href="portfolio.html?category=academic"
+           class="project-category-card">
+            <div class="project-category-image">
+                <img src="images/presentation.jpg"
+                     alt="Academic project preview">
+                <span class="project-category-number">02</span>
+            </div>
+            <div class="project-category-info">
+                <h3>Academic Projects</h3>
+                <span>Explore Category ↗</span>
+            </div>
+        </a>
+
+        <a href="portfolio.html?category=professional"
+           class="project-category-card">
+            <div class="project-category-image">
+                <img src="images/business-plan.jpg"
+                     alt="Professional document preview">
+                <span class="project-category-number">03</span>
+            </div>
+            <div class="project-category-info">
+                <h3>Professional Documents</h3>
+                <span>Explore Category ↗</span>
+            </div>
+        </a>
+
+        <a href="portfolio.html?category=design"
+           class="project-category-card">
+            <div class="project-category-image project-design-placeholder">
+                <span class="design-placeholder-label">HW.</span>
+                <span class="project-category-number">04</span>
+            </div>
+            <div class="project-category-info">
+                <h3>Graphic Designs</h3>
+                <span>Explore Category ↗</span>
+            </div>
+        </a>
 
     </div>
 
-
-    <div class="portfolio-container">
-
-        <div class="portfolio-card">
-
-            <img
-                src="images/research.jpg"
-                alt="HwanWrites research project"
-                class="portfolio-image"
-                onclick="openImage(this.src)"
-            >
-
-            <h3>
-                Research Project
-            </h3>
-
-            <p>
-                Research writing, formatting, and document assistance.
-            </p>
-
-        </div>
-
-
-        <div class="portfolio-card">
-
-            <img
-                src="images/presentation.jpg"
-                alt="HwanWrites presentation project"
-                class="portfolio-image"
-                onclick="openImage(this.src)"
-            >
-
-            <h3>
-                Presentation Design
-            </h3>
-
-            <p>
-                Academic presentation and visual document assistance.
-            </p>
-
-        </div>
-
-
-        <div class="portfolio-card">
-
-            <img
-                src="images/business-plan.jpg"
-                alt="HwanWrites business document project"
-                class="portfolio-image"
-                onclick="openImage(this.src)"
-            >
-
-            <h3>
-                Business Document
-            </h3>
-
-            <p>
-                Business document preparation, formatting, and organization.
-            </p>
-
-        </div>
-
+    <div class="project-showcase-footer">
+        <p>Selected work, presented with client confidentiality in mind.</p>
     </div>
 
 </section>
@@ -618,47 +606,91 @@
 
 </section>
 
-<section class="service-notice">
-
-    <div class="service-notice-content">
-
-        <p class="section-label">
-            SERVICE NOTICE
-        </p>
-
-        <h2>
-            Before You Proceed
-        </h2>
-
-        <p>
-            Service rates may vary depending on the scope, complexity,
-            and deadline of the project. Rush requests may be subject
-            to additional fees.
-        </p>
-
-        <p>
-            A 65% down payment is required before work begins.
-            Cancellations and refunds are not accepted once the project
-            has started. Minor revisions within the agreed scope are
-            accommodated.
-        </p>
-
-        <p>
-            Client files and information are handled with confidentiality.
-            HwanWrites provides writing and document assistance only;
-            clients remain responsible for the ethical and appropriate
-            use of the completed work.
-        </p>
-
-    </div>
-
-</section>
-
     </main>
     
     <a href="#home" class="back-to-top">
         ↑
     </a>
+
+<!-- FLOATING TERMS AND CONDITIONS -->
+<div class="terms-dock" id="terms-dock">
+
+    <button
+        type="button"
+        class="terms-toggle"
+        id="terms-toggle"
+        aria-expanded="false"
+        aria-controls="terms-panel"
+    >
+        <span>TERMS AND CONDITION</span>
+        <span class="terms-toggle-icon">↗</span>
+    </button>
+
+    <div
+        class="terms-panel"
+        id="terms-panel"
+        aria-label="General Terms and Condition"
+        aria-hidden="true"
+    >
+        <div class="terms-panel-header">
+            <p class="terms-eyebrow">HWANWRITES</p>
+            <h2>GENERAL TERMS AND CONDITION</h2>
+            <button
+                type="button"
+                class="terms-close"
+                id="terms-close"
+                aria-label="Close terms and conditions"
+            >×</button>
+        </div>
+
+        <div class="terms-content">
+
+            <div class="terms-item">
+                <h3>60% PAYMENT REQUIRED.</h3>
+                <p>Work will commence only upon receipt of the 60% down payment.</p>
+            </div>
+
+            <div class="terms-item">
+                <h3>NO CANCELLATION &amp; NO REFUND.</h3>
+                <p>Once the project has commenced, cancellations and refunds are not allowed.</p>
+            </div>
+
+            <div class="terms-item">
+                <h3>CONFIDENTIALITY.</h3>
+                <p>All client information, files, and documents are handled with strict confidentiality.</p>
+            </div>
+
+            <div class="terms-item">
+                <h3>REVISIONS POLICY.</h3>
+                <p>Free revisions vary by service and apply only within the agreed scope. Additional changes may incur corresponding charges.</p>
+            </div>
+
+            <div class="terms-item">
+                <h3>TURNAROUND TIME.</h3>
+                <p>Delivery time depends on the service requested, scope of work, complexity, and deadline.</p>
+            </div>
+
+            <div class="terms-item">
+                <h3>CLIENT RESPONSIBILITY.</h3>
+                <p>Clients are responsible for providing complete and accurate instructions before the project begins.</p>
+            </div>
+
+            <div class="terms-item">
+                <h3>ACADEMIC INTEGRITY.</h3>
+                <p>HwanWrites provides writing assistance only. Clients are responsible for the proper and ethical use of all outputs.</p>
+            </div>
+
+            <p class="terms-additional">
+                Additional requests beyond the agreed scope may require additional fees.
+            </p>
+
+            <p class="terms-agreement">
+                By availing of our services, you agree to these Terms &amp; Conditions.
+            </p>
+
+        </div>
+    </div>
+</div>
 
     <!-- Footer -->
        <footer>
@@ -668,8 +700,6 @@
         </p>
 
     </footer>
-
-    <script src="script.js"></script>
 
 <div id="image-viewer" class="image-viewer">
 
@@ -685,6 +715,6 @@
 
 </div>
 
+<script src="script.js"></script>
 </body>
-
 </html>

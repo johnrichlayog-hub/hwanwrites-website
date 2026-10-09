@@ -404,7 +404,7 @@ const serviceDetails = {
 
     more: {
         number: "06",
-        title: "And Many More",
+        title: "and Many More",
         items: [
             "Content Creation",
             "Digital Marketing Assistance",
@@ -455,3 +455,60 @@ serviceDetailsBox.addEventListener("click", function (event) {
     }
 
 });
+
+/* =====================================
+   HWANWRITES TERMS POPUP BEHAVIOR
+===================================== */
+
+
+(() => {
+    function initTermsPopup() {
+        const dock = document.getElementById("terms-dock");
+        const toggle = document.getElementById("terms-toggle");
+        const panel = document.getElementById("terms-panel");
+        const close = document.getElementById("terms-close");
+
+        if (!dock || !toggle || !panel || !close) return;
+
+        const openTerms = () => {
+            dock.classList.add("is-open");
+            toggle.setAttribute("aria-expanded", "true");
+            panel.setAttribute("aria-hidden", "false");
+        };
+
+        const closeTerms = () => {
+            dock.classList.remove("is-open");
+            toggle.setAttribute("aria-expanded", "false");
+            panel.setAttribute("aria-hidden", "true");
+        };
+
+        toggle.addEventListener("click", (event) => {
+            event.stopPropagation();
+
+            if (dock.classList.contains("is-open")) {
+                closeTerms();
+            } else {
+                openTerms();
+            }
+        });
+
+        close.addEventListener("click", (event) => {
+            event.stopPropagation();
+            closeTerms();
+        });
+
+        document.addEventListener("click", (event) => {
+            if (!dock.contains(event.target)) closeTerms();
+        });
+
+        document.addEventListener("keydown", (event) => {
+            if (event.key === "Escape") closeTerms();
+        });
+    }
+
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", initTermsPopup);
+    } else {
+        initTermsPopup();
+    }
+})();
