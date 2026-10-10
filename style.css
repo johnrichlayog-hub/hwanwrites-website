@@ -5054,7 +5054,6 @@ section + section {
     }
 }
 
-
 /* STORY FLIP CARDS */
 
 .profile-gallery-card {
@@ -5180,7 +5179,6 @@ section + section {
         transition: none;
     }
 }
-
 
 /* COMPACT STORY FLIP CARDS */
 .flip-card-back {
@@ -5310,5 +5308,81 @@ section + section {
     .profile-gallery .gallery-description {
         font-size: 13px;
         text-align: center;
+    }
+}
+
+
+/* What's in My Computer - Tools Showcase */
+.tools-showcase {
+    padding: 80px 0 0;
+    background: #181D1A;
+    color: #f5f5f0;
+    border-top: 1px solid #303a31;
+    text-align: center;
+}
+
+/* Section Heading */
+.tools-showcase .section-heading {
+    max-width: 760px;
+    margin: 0 auto 42px;
+    padding: 0 6%;
+    box-sizing: border-box;
+}
+
+.tools-showcase .section-label {
+    color: #6f9f78;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    margin-bottom: 16px;
+}
+
+.tools-showcase .section-heading h2 {
+    margin: 0 0 12px;
+    font-size: clamp(28px, 3vw, 38px);
+    color: #f5f5f0;
+}
+
+.tools-showcase .section-heading > p:not(.section-label) {
+    max-width: 650px;
+    margin: 0 auto;
+    color: #b8c0b8;
+    font-size: 16px;
+    line-height: 1.8;
+}
+
+/* Full-Width Tools Video */
+.tools-showcase-image {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.tools-showcase-image video {
+    display: block;
+    width: 100%;
+    max-width: none;
+    height: auto;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+}
+
+/* Mobile Layout */
+@media (max-width: 768px) {
+    .tools-showcase {
+        padding-top: 60px;
+    }
+
+    .tools-showcase .section-heading {
+        margin-bottom: 30px;
+        padding: 0 5%;
+    }
+
+    .tools-showcase .section-heading > p:not(.section-label) {
+        font-size: 14px;
     }
 }
