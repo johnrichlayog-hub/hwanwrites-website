@@ -548,4 +548,90 @@ galleryCards.forEach((card) => {
     });
 });
 
+/* =========================================
+   TRUST GALLERY PLACEHOLDER NAVIGATION
+========================================= */
 
+(() => {
+    const galleryTotals = {
+        transactions: 58,
+        testimonials: 27
+    };
+
+    document.querySelectorAll(".trust-slider").forEach((slider) => {
+        const galleryName = slider.dataset.gallery;
+        const total = galleryTotals[galleryName];
+
+        if (!total) return;
+
+        const counter = slider.querySelector(".trust-counter");
+        const buttons = slider.querySelectorAll(".trust-arrow");
+        const placeholderTitle = slider.querySelector(
+            ".trust-placeholder p"
+        );
+
+        if (!counter || !placeholderTitle || buttons.length === 0) {
+            return;
+        }
+
+        let currentIndex = 0;
+        let startX = 0;
+        let startY = 0;
+
+        function showSlide(index) {
+            currentIndex = ((index % total) + total) % total;
+
+            counter.textContent = `${currentIndex + 1} / ${total}`;
+
+            if (galleryName === "transactions") {
+                placeholderTitle.textContent =
+                    `Transaction Proof ${currentIndex + 1}`;
+            } else if (galleryName === "testimonials") {
+                placeholderTitle.textContent =
+                    `Client Feedback ${currentIndex + 1}`;
+            }
+        }
+
+        // PREVIOUS AND NEXT BUTTONS
+        buttons.forEach((button) => {
+            button.addEventListener("click", () => {
+                const direction = Number(button.dataset.direction);
+
+                if (direction !== -1 && direction !== 1) return;
+
+                showSlide(currentIndex + direction);
+            });
+        });
+
+        // SWIPE NAVIGATION FOR TOUCHSCREENS
+        slider.addEventListener("touchstart", (event) => {
+            if (event.touches.length !== 1) return;
+
+            startX = event.touches[0].clientX;
+            startY = event.touches[0].clientY;
+        }, { passive: true });
+
+        slider.addEventListener("touchend", (event) => {
+            if (event.changedTouches.length !== 1) return;
+
+            const endX = event.changedTouches[0].clientX;
+            const endY = event.changedTouches[0].clientY;
+
+            const differenceX = endX - startX;
+            const differenceY = endY - startY;
+
+            // Ignore short swipes and vertical scrolling
+            if (
+                Math.abs(differenceX) < 45 ||
+                Math.abs(differenceX) <= Math.abs(differenceY)
+            ) {
+                return;
+            }
+
+            showSlide(currentIndex + (differenceX < 0 ? 1 : -1));
+        }, { passive: true });
+
+        // INITIALIZE GALLERY
+        showSlide(0);
+    });
+})();
