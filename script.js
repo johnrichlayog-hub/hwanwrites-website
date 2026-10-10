@@ -444,22 +444,21 @@ serviceCards.forEach(function (card) {
 
 });
 
-serviceDetailsClose.addEventListener("click", function () {
-    serviceDetailsBox.classList.remove("active");
-});
-
-serviceDetailsBox.addEventListener("click", function (event) {
-
-    if (event.target === serviceDetailsBox) {
+if (serviceDetailsClose && serviceDetailsBox) {
+    serviceDetailsClose.addEventListener("click", function () {
         serviceDetailsBox.classList.remove("active");
-    }
+    });
 
-});
+    serviceDetailsBox.addEventListener("click", function (event) {
+        if (event.target === serviceDetailsBox) {
+            serviceDetailsBox.classList.remove("active");
+        }
+    });
+}
 
 /* =====================================
    HWANWRITES TERMS POPUP BEHAVIOR
 ===================================== */
-
 
 (() => {
     function initTermsPopup() {
@@ -512,3 +511,41 @@ serviceDetailsBox.addEventListener("click", function (event) {
         initTermsPopup();
     }
 })();
+
+/* STORY FLIP CARDS: ONE FLIPPED AT A TIME */
+console.log("Flip card script is working!");
+
+const galleryCards = document.querySelectorAll(".profile-gallery-card");
+
+galleryCards.forEach((card) => {
+    card.setAttribute("tabindex", "0");
+    card.setAttribute("role", "button");
+    card.setAttribute("aria-pressed", "false");
+
+    function flipCard() {
+        const isAlreadyFlipped = card.classList.contains("is-flipped");
+
+        // Return all other cards to the front
+        galleryCards.forEach((otherCard) => {
+            otherCard.classList.remove("is-flipped");
+            otherCard.setAttribute("aria-pressed", "false");
+        });
+
+        // Flip this card only if it was previously closed
+        if (!isAlreadyFlipped) {
+            card.classList.add("is-flipped");
+            card.setAttribute("aria-pressed", "true");
+        }
+    }
+
+    card.addEventListener("click", flipCard);
+
+    card.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            flipCard();
+        }
+    });
+});
+
+

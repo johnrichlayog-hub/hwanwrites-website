@@ -1047,7 +1047,6 @@ footer p {
     color: var(--secondary-color);
 }
 
-
 /* PHOTO GALLERY */
 .profile-gallery {
     padding: 120px 8%;
@@ -1056,26 +1055,51 @@ footer p {
 }
 
 .profile-gallery-container {
-    max-width: 1100px;
+    max-width: 1200px;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, minmax(0, 1fr));
     gap: 20px;
 }
 
 .profile-gallery-card {
     overflow: hidden;
+    border-radius: 4px;
+    aspect-ratio: 4 / 5;
 }
 
-.gallery-placeholder {
+.profile-gallery-card img {
+    display: block;
     width: 100%;
-    aspect-ratio: 1 / 1;
-    background-color: #eeeeee;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: var(--secondary-color);
-    font-size: 14px;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 30%;
+    transition: transform 0.4s ease;
+    transform: scale(1.2);
+}
+
+.profile-gallery-card:hover img {
+    transform: scale(1.05);
+}
+
+/* TABLET */
+@media (max-width: 1024px) {
+    .profile-gallery-container {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 18px;
+    }
+}
+
+/* MOBILE */
+@media (max-width: 600px) {
+    .profile-gallery {
+        padding: 80px 6%;
+    }
+
+    .profile-gallery-container {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
+    }
 }
 
 
@@ -4623,6 +4647,7 @@ section + section {
     height: 100%;
     display: block;
     object-fit: cover;
+    transform: scale(1.1);
     transition: transform 0.35s ease;
 }
 
@@ -4730,7 +4755,6 @@ section + section {
     }
 }
 
-```css
 /* CENTER PROJECT SHOWCASE HEADING */
 #portfolio.project-showcase .section-heading {
     text-align: center;
@@ -4962,5 +4986,329 @@ section + section {
         visibility: visible;
         pointer-events: auto;
         transform: translateY(0);
+    }
+}
+
+/* INDIVIDUAL PHOTO ADJUSTMENTS */
+
+.profile-gallery-card:nth-child(1) img {
+    object-position: 50% 50%;
+    transform: scale(1.5);
+}
+
+.profile-gallery-card:nth-child(2) img {
+    object-position: 50% 20%;
+    transform: scale(1.0);
+}
+
+.profile-gallery-card:nth-child(3) img {
+    object-position: 15% 10%;
+    transform: scale(1.0);
+}
+
+.profile-gallery-card:nth-child(4) img {
+    object-position: 50% 50%;
+    transform: scale(1.0);
+}
+
+.profile-gallery-card:nth-child(5) img {
+    object-position: 50% 50%;
+    transform: scale(1.0);
+}
+
+.profile-gallery-card:nth-child(6) img {
+    object-position: 50% 50%;
+    transform: scale(1.0);
+}
+
+.profile-gallery-card:nth-child(7) img {
+    object-position: 90% 50%;
+    transform: scale(2.3);
+}
+
+.profile-gallery-card:nth-child(8) img {
+    object-position: 50% 100%;
+    transform: scale(1.40);
+}
+
+.profile-gallery-card:nth-child(9) img {
+    object-position: 50% 50%;
+    transform: scale(1.2);
+}
+
+.profile-gallery-card:nth-child(10) img {
+    object-position: 50% 0%;
+    transform: scale(1.2);
+}
+
+/* SOFT FADE GALLERY ANIMATION */
+
+.profile-gallery-card img {
+    opacity: 1;
+    transition: opacity 0.35s ease-in-out;
+}
+
+@media (hover: hover) {
+    .profile-gallery-card:hover img {
+        opacity: 0.75;
+    }
+}
+
+
+/* STORY FLIP CARDS */
+
+.profile-gallery-card {
+    aspect-ratio: 4 / 5;
+    min-width: 0;
+    perspective: 1000px;
+    border: none;
+    overflow: visible;
+    background: transparent;
+}
+
+.flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-height: 280px;
+    transform-style: preserve-3d;
+    transition: transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.profile-gallery-card.is-flipped .flip-card-inner {
+    transform: rotateY(180deg);
+}
+
+.flip-card-front,
+.flip-card-back {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+    border-radius: 6px;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+.flip-card-front {
+    background: #eeeeee;
+}
+
+.flip-card-front img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* FRONT PHOTO HINT */
+
+.flip-hint {
+    position: absolute;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    padding: 8px 10px;
+    border-radius: 3px;
+    background: rgba(20, 29, 23, 0.72);
+    color: #ffffff;
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+@media (hover: hover) {
+    .profile-gallery-card:hover .flip-hint {
+        opacity: 1;
+    }
+}
+
+/* BACK OF CARD */
+
+.flip-card-back {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    padding: clamp(14px, 1.6vw, 22px);
+    background: #eaf0e9;
+    color: #26372b;
+    border: 1px solid #d5e1d4;
+    transform: rotateY(180deg);
+    text-align: left;
+}
+
+.flip-card-back .story-number {
+    margin-bottom: 10px;
+    color: #6f9f78;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+}
+
+.flip-card-back h3 {
+    margin: 0 0 12px;
+    color: #26372b;
+    font-size: clamp(14px, 1.2vw, 18px);
+    line-height: 1.35;
+}
+
+.flip-card-back p {
+    margin: 0;
+    color: #435247;
+    font-size: clamp(10px, 0.85vw, 12px);
+    line-height: 1.65;
+    overflow-wrap: anywhere;
+}
+
+.flip-card-back .back-hint {
+    margin-top: 12px;
+    color: #6f9f78;
+    font-size: 10px;
+    letter-spacing: 0.04em;
+}
+
+/* ACCESSIBILITY */
+
+@media (prefers-reduced-motion: reduce) {
+    .flip-card-inner,
+    .flip-hint {
+        transition: none;
+    }
+}
+
+
+/* COMPACT STORY FLIP CARDS */
+.flip-card-back {
+    padding: 14px;
+}
+
+.flip-card-back .story-number {
+    font-size: 9px;
+    margin-bottom: 7px;
+}
+
+.flip-card-back h3 {
+    font-size: 14px;
+    line-height: 1.3;
+    margin-bottom: 8px;
+}
+
+.flip-card-back p {
+    font-size: 10px;
+    line-height: 1.5;
+}
+
+.flip-card-back .back-hint {
+    font-size: 9px;
+    margin-top: 8px;
+}
+
+.flip-hint {
+    font-size: 10px;
+    padding: 7px 9px;
+    opacity: 1;
+}
+
+/* Slightly smaller text on narrow screens */
+@media (max-width: 480px) {
+    .flip-card-back {
+        padding: 12px;
+    }
+
+    .flip-card-back h3 {
+        font-size: 13px;
+    }
+
+    .flip-card-back p {
+        font-size: 9px;
+        line-height: 1.45;
+    }
+}
+
+/* SHOW DISCOVER HINT ONLY ON MOUSE HOVER */
+.flip-hint {
+    opacity: 0;
+    transition: opacity 0.25s ease;
+    pointer-events: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .profile-gallery-card:hover .flip-hint {
+        opacity: 1;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .flip-hint {
+        transition: none;
+    }
+}
+
+/* GALLERY HEADING */
+
+.profile-gallery .gallery-heading {
+    display: block;
+    width: 100%;
+    max-width: 850px;
+    margin: 0 auto 55px;
+    padding: 0 20px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.profile-gallery .section-label,
+.profile-gallery .gallery-eyebrow {
+    display: block;
+    margin: 0 0 16px;
+    color: #6f9f78;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.24em;
+    line-height: 1.0;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.profile-gallery .gallery-heading h2,
+.profile-gallery .gallery-title {
+    display: block;
+    width: 100%;
+    margin: 0 auto 18px;
+    color: #ffffff;
+    font-size: 3.0em;
+    text-align: center;
+}
+
+.profile-gallery .gallery-intro,
+.profile-gallery .gallery-description {
+    display: block;
+    max-width: 550px;
+    margin: 0 auto;
+    color: #69756b;
+    font-size: 14px;
+    text-align: center;
+    line-height: 1.0;
+}
+
+@media (max-width: 600px) {
+    .profile-gallery .gallery-heading {
+        margin-bottom: 35px;
+    }
+
+    .profile-gallery .gallery-heading h2,
+    .profile-gallery .gallery-title {
+        font-size: 1.2em;
+        text-align: center;
+    }
+
+    .profile-gallery .gallery-intro,
+    .profile-gallery .gallery-description {
+        font-size: 13px;
+        text-align: center;
     }
 }
