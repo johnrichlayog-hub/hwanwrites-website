@@ -331,15 +331,34 @@ const serviceDetails = {
         number: "01",
         title: "Research Assistance",
         items: [
-            "Research Title and Topic Assistance",
-            "Research Proposal Support",
+            "Complete Research Paper",
+            "Chapter 1-5 Only",
+            "Per-Chapter",
+            "Per-Parts",
             "Questionnaire Construction",
-            "Data Encoding and Cleaning",
+            "Research Abstract",
+            "Research Gap",
+            "Bibliography",
+            "Appendices",
+            "Table of Contents",
+            "Curriculum Vitae",
+            "Research Title Proposal",
+            "Research Proposal",
+            "Data Encoding",
+            "Data Cleaning",
             "Statistical Analysis",
-            "Research Writing and Formatting",
+            "Thematic Analysis",
+            "IMRaD Assistance",
+            "Oral Defense PPT",
             "APA 7 Formatting",
-            "Reference and Citation Checking",
-            "Research Presentation and Defense PPT"
+            "Reference Checking",
+            "Citation Formatting",
+            "Grammar Checking",
+            "Proofreading",
+            "Manual Paraphrasing",
+            "Manual AI Content Revision",
+            "Turnitin Scan (AI & Plagiarism)",
+            "Paper Consultation"
         ]
     },
 
@@ -347,15 +366,22 @@ const serviceDetails = {
         number: "02",
         title: "Academic Services",
         items: [
-            "Essays",
-            "Reflection and Reaction Papers",
-            "Position and Critique Papers",
-            "Case Studies",
-            "Concept Papers",
-            "Academic Reports",
-            "Presentation Slides",
-            "Proofreading and Editing",
-            "Paraphrasing and Academic Formatting"
+            "Essay",
+            "Reflection Paper",
+            "Reaction Paper",
+            "Position Paper (citations and references included)",
+            "Critique Paper",
+            "Case Study",
+            "Academic Reports (Narrative/Accomplishment/etc.)",
+            "Complete Feasibility Study Assistance",
+            "Senior High School Research",
+            "OJT Journal",
+            "Daily Journal Entry",
+            "Weekly Journal Entry",
+            "Business Plan",
+            "Event Plan",
+            "Concept Paper",
+            "Presentation Slides"
         ]
     },
 
@@ -363,14 +389,18 @@ const serviceDetails = {
         number: "03",
         title: "Professional Documents",
         items: [
-            "Resume and CV",
-            "Cover and Application Letters",
-            "Letters of Intent and Request",
-            "Personal Statements and SOPs",
-            "Business Plans",
-            "Event Plans",
-            "Professional Presentations",
-            "Document Formatting and Organization"
+            "Resume/CV (ATS-Friendly, with application/cover letter)",
+            "Letter of Intent",
+            "Letter of Request",
+            "Recommendation Letter (Drafting)",
+            "Personal Statement",
+            "Statement of Purpose (SOP)",
+            "Business Letters",
+            "Formal Letters",
+            "Invitation Letters/Content",
+            "Authorization Letter",
+            "Memorandum of Agreement (Drafting)",
+            "Certificates Content"
         ]
     },
 
@@ -378,13 +408,22 @@ const serviceDetails = {
         number: "04",
         title: "Web Development",
         items: [
-            "Landing Pages",
-            "Portfolio Websites",
-            "HTML and CSS Development",
-            "JavaScript Interactions",
-            "Responsive Website Layouts",
-            "Website Styling and Customization",
-            "Basic Website Setup and Deployment"
+            "System Development (PHP/MySQL)",
+            "Laravel Development",
+            "Front-End Development (HTML, CSS, JavaScript)",
+            "Database Design",
+            "System Integration",
+            "Deployment Guide",
+            "Maintenance Guide",
+            "Bug Fixing Support",
+            "System Documentation",
+            "System Requirements Specification (SRS)",
+            "System Design (DFD, ERD, UML)",
+            "User Interface Design",
+            "User Manual",
+            "Testing Documentation",
+            "Implementation Guide",
+            "Editing & Formatting"
         ]
     },
 
@@ -399,19 +438,6 @@ const serviceDetails = {
             "Branding Materials",
             "Promotional Visuals",
             "Simple Layout and Visual Design"
-        ]
-    },
-
-    more: {
-        number: "06",
-        title: "and Many More",
-        items: [
-            "Content Creation",
-            "Digital Marketing Assistance",
-            "Presentation Design",
-            "Creative and Digital Projects",
-            "Custom Document Requests",
-            "Other project-based assistance"
         ]
     }
 };
