@@ -1185,19 +1185,20 @@ h3 {
     color: var(--white);
 }
 
-
 /* SUBTLE BACKGROUND GRID */
 
 .hero,
 .profile-hero,
-.profile-contact {
+.profile-contact,
+.contact {
     position: relative;
     isolation: isolate;
 }
 
 .hero::before,
 .profile-hero::before,
-.profile-contact::before {
+.profile-contact::before,
+.contact::before {
     content: "";
     position: absolute;
     inset: 0;
@@ -1219,9 +1220,17 @@ h3 {
 
 .hero > *,
 .profile-hero > *,
-.profile-contact > * {
+.profile-contact > *,
+.contact > * {
     position: relative;
     z-index: 1;
+}
+
+/* LARGER GRID FOR CONTACT SECTIONS ONLY */
+
+.contact::before,
+.profile-contact::before {
+    background-size: 64px 64px;
 }
 
 /* PREMIUM HEADER */
@@ -1690,6 +1699,7 @@ nav {
     line-height: 1.7;
     color: var(--secondary-color);
 }
+
 /* CONTACT SECTION */
 
 .contact {
@@ -1739,6 +1749,7 @@ nav {
     border-color: var(--accent-color);
     transform: translateY(-2px);
 }
+
 /* FOOTER */
 
 footer {
@@ -2997,7 +3008,6 @@ body {
         transform 0.3s ease;
 }
 
-```css
 /* ========================================
    HWANWRITES - GLOBAL EMERALD TECH THEME
 ======================================== */
@@ -5805,5 +5815,99 @@ section + section {
 
     .profile-milestones .milestone-card h3 {
         font-size: 17px;
+    }
+}
+
+
+/* =====================================
+   CONTACT GRID - SUBTLE HOMEPAGE STYLE
+===================================== */
+
+#contact.contact,
+.profile-contact {
+    position: relative;
+    isolation: isolate;
+}
+
+#contact.contact::before,
+.profile-contact::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(
+            rgba(21, 122, 40, 0.08) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(21, 122, 40, 0.08) 1px,
+            transparent 1px
+        );
+    background-size: 30px 30px;
+    background-repeat: repeat;
+    background-position: 0 0;
+    pointer-events: none;
+    z-index: -1;
+}
+
+#contact.contact > *,
+.profile-contact > * {
+    position: relative;
+    z-index: 1;
+}
+
+/* =====================================
+   HWANWRITES - MOVING EMERALD LIGHT SWEEP
+===================================== */
+
+@keyframes emeraldLightSweep {
+    0% {
+        transform: translate3d(-12%, 0, 0) rotate(-12deg);
+        opacity: 0.35;
+    }
+
+    50% {
+        transform: translate3d(12%, 0, 0) rotate(-12deg);
+        opacity: 0.65;
+    }
+
+    100% {
+        transform: translate3d(-12%, 0, 0) rotate(-12deg);
+        opacity: 0.35;
+    }
+}
+
+.has-moving-light {
+    position: relative;
+    isolation: isolate;
+}
+
+.has-moving-light::before {
+    content: "";
+    position: absolute;
+    inset: -15% -10%;
+    z-index: -1;
+    pointer-events: none;
+
+    background: linear-gradient(
+        115deg,
+        transparent 25%,
+        rgba(52, 66, 56, 0.04) 38%,
+        rgba(64, 87, 68, 0.18) 47%,
+        rgba(111, 159, 120, 0.12) 52%,
+        rgba(64, 87, 68, 0.06) 59%,
+        transparent 72%
+    );
+
+    filter: blur(38px);
+    animation: emeraldLightSweep 18s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .has-moving-light::before {
+        animation: none;
+        opacity: 0.4;
+        transform: none;
     }
 }
