@@ -549,47 +549,85 @@ galleryCards.forEach((card) => {
 });
 
 /* =========================================
-   TRUST GALLERY PLACEHOLDER NAVIGATION
+   TRUSTED TRANSACTION & CLIENT FEEDBACK
 ========================================= */
 
 (() => {
-    const galleryTotals = {
-        transactions: 58,
-        testimonials: 27
+    const galleryConfig = {
+        transactions: {
+            total: 59,
+            frontPage: "TrustedTransactionFrontPage.jpg",
+            imageName: (number) => `${number}Transaction.jpg`,
+            alt: (number) =>
+                number === 0
+                    ? "Trusted Transaction front page"
+                    : `Trusted Transaction ${number}`
+        },
+
+        testimonials: {
+            total: 27,
+            frontPage: "ClientFeedbackFrontPage.jpg",
+
+            imageName: (number) => {
+                // Skip the missing 5Feedback.jpg
+                const actualNumber = number >= 5
+                    ? number + 1
+                    : number;
+
+                return `${actualNumber}Feedback.jpg`;
+            },
+
+            alt: (number) => {
+                if (number === 0) {
+                    return "Client Feedback front page";
+                }
+
+                const actualNumber = number >= 5
+                    ? number + 1
+                    : number;
+
+                return `Client Feedback ${actualNumber}`;
+            }
+        }
     };
 
     document.querySelectorAll(".trust-slider").forEach((slider) => {
         const galleryName = slider.dataset.gallery;
-        const total = galleryTotals[galleryName];
+        const config = galleryConfig[galleryName];
 
-        if (!total) return;
+        if (!config) return;
 
+        const frame = slider.querySelector(".trust-image-frame");
         const counter = slider.querySelector(".trust-counter");
         const buttons = slider.querySelectorAll(".trust-arrow");
-        const placeholderTitle = slider.querySelector(
-            ".trust-placeholder p"
-        );
 
-        if (!counter || !placeholderTitle || buttons.length === 0) {
-            return;
-        }
+        if (!frame || !counter || buttons.length === 0) return;
+
+        const image = document.createElement("img");
+        image.className = "trust-gallery-image";
+        image.loading = "lazy";
+        image.decoding = "async";
+
+        frame.querySelector(".trust-placeholder")?.remove();
+        frame.prepend(image);
 
         let currentIndex = 0;
         let startX = 0;
         let startY = 0;
 
         function showSlide(index) {
-            currentIndex = ((index % total) + total) % total;
+            currentIndex =
+                (index + config.total) % config.total;
 
-            counter.textContent = `${currentIndex + 1} / ${total}`;
+            const filename = currentIndex === 0
+                ? config.frontPage
+                : config.imageName(currentIndex);
 
-            if (galleryName === "transactions") {
-                placeholderTitle.textContent =
-                    `Transaction Proof ${currentIndex + 1}`;
-            } else if (galleryName === "testimonials") {
-                placeholderTitle.textContent =
-                    `Client Feedback ${currentIndex + 1}`;
-            }
+            image.src = `images/${filename}`;
+            image.alt = config.alt(currentIndex);
+
+            counter.textContent =
+                `${currentIndex + 1} / ${config.total}`;
         }
 
         // PREVIOUS AND NEXT BUTTONS
@@ -597,9 +635,9 @@ galleryCards.forEach((card) => {
             button.addEventListener("click", () => {
                 const direction = Number(button.dataset.direction);
 
-                if (direction !== -1 && direction !== 1) return;
-
-                showSlide(currentIndex + direction);
+                if (direction === -1 || direction === 1) {
+                    showSlide(currentIndex + direction);
+                }
             });
         });
 
@@ -620,7 +658,6 @@ galleryCards.forEach((card) => {
             const differenceX = endX - startX;
             const differenceY = endY - startY;
 
-            // Ignore short swipes and vertical scrolling
             if (
                 Math.abs(differenceX) < 45 ||
                 Math.abs(differenceX) <= Math.abs(differenceY)
@@ -630,6 +667,11 @@ galleryCards.forEach((card) => {
 
             showSlide(currentIndex + (differenceX < 0 ? 1 : -1));
         }, { passive: true });
+
+        // REPORT MISSING IMAGES
+        image.addEventListener("error", () => {
+            console.error(`Gallery image not found: ${image.src}`);
+        });
 
         // INITIALIZE GALLERY
         showSlide(0);
