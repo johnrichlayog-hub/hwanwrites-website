@@ -5975,7 +5975,7 @@ section + section {
 }
 
 /* MOBILE LAYOUT */
-@media (max-width: 768px) {S
+@media (max-width: 768px) {
     .more-about-me {
         padding: 80px 7%;
     }
