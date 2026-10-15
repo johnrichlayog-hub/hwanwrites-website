@@ -1883,112 +1883,47 @@ footer p {
     }
 }
 
+
 /* =========================================
-   FLOATING CERTIFICATE CAROUSEL
+   PROFILE PAGE CERTIFICATES
    ========================================= */
 
-.certificate-dock {
-    position: fixed;
-    right: 28px;
-    bottom: 28px;
-    z-index: 999;
-    font-family: inherit;
+.profile-certificates {
+    padding: 100px 8%;
+    background-color: var(--light-background);
+    text-align: center;
 }
 
-.certificate-toggle {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 13px 18px;
-    border: 1px solid rgba(21, 122, 40, 0.65);
-    border-radius: 8px;
-    background: #191919;
+.profile-certificates .section-heading {
+    margin-bottom: 40px;
+}
+
+.certificate-category {
+    max-width: 900px;
+    margin: 0 auto 48px;
+    text-align: left;
+}
+
+.certificate-category h3 {
+    margin: 0 0 18px;
     color: var(--white);
-    font-family: inherit;
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 0.4px;
-    cursor: pointer;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
-    transition: all 0.3s ease;
+    font-size: 22px;
+    line-height: 1.4;
 }
 
-.certificate-toggle:hover {
-    background: var(--accent-color);
-    color: #171717;
-    transform: translateY(-3px);
-    box-shadow: 0 12px 30px rgba(21, 122, 40, 0.18);
-}
-
-.certificate-toggle-icon {
-    font-size: 16px;
-}
-
-.certificate-panel {
-    position: absolute;
-    right: 0;
-    bottom: 58px;
-    width: 340px;
-    padding: 22px;
-    background: #191919;
-    border: 1px solid var(--border-color);
-    border-radius: 10px;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(15px) scale(0.98);
-    transform-origin: bottom right;
-    transition:
-        opacity 0.3s ease,
-        visibility 0.3s ease,
-        transform 0.3s ease;
-}
-
-.certificate-dock.open .certificate-panel {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0) scale(1);
-}
-
-.certificate-panel-header {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    margin-bottom: 18px;
-}
-
-.certificate-panel-header .section-label {
-    margin-bottom: 5px;
-}
-
-.certificate-panel-header h3 {
-    margin: 0;
-    color: var(--white);
-    font-size: 20px;
-}
-
-.certificate-close {
-    width: 32px;
-    height: 32px;
-    border: 1px solid var(--border-color);
-    border-radius: 6px;
-    background: transparent;
+.certificate-category-description {
+    margin: 0 0 20px;
     color: var(--secondary-color);
-    font-size: 20px;
-    line-height: 1;
-    cursor: pointer;
-    transition: all 0.25s ease;
-}
-
-.certificate-close:hover {
-    border-color: var(--accent-color);
-    color: var(--accent-color);
+    font-size: 14px;
+    line-height: 1.7;
 }
 
 .certificate-carousel {
     position: relative;
-    overflow: hidden;
     width: 100%;
+    max-width: 760px;
+    margin: 0 auto;
+    overflow: hidden;
     touch-action: pan-y;
 }
 
@@ -2004,54 +1939,43 @@ footer p {
 .certificate-slide img {
     display: block;
     width: 100%;
-    height: 245px;
+    height: 460px;
     object-fit: contain;
     background: #111111;
     border: 1px solid var(--border-color);
-    border-radius: 6px;
-    cursor: pointer;
-    transition: transform 0.3s ease, border-color 0.3s ease;
+    border-radius: 8px;
+    cursor: zoom-in;
+    transition: border-color 0.25s ease;
 }
 
 .certificate-slide img:hover {
-    transform: scale(1.015);
-    border-color: rgba(21, 122, 40, 0.55);
-}
-
-.certificate-info {
-    padding-top: 14px;
-}
-
-.certificate-info h4 {
-    margin: 0 0 5px;
-    color: var(--white);
-    font-size: 15px;
-    line-height: 1.4;
-}
-
-.certificate-info p {
-    margin: 0;
-    color: var(--secondary-color);
-    font-size: 12px;
+    border-color: var(--accent-color);
 }
 
 .certificate-navigation {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    margin-top: 16px;
+    justify-content: center;
+    gap: 24px;
+    margin-top: 18px;
 }
 
 .certificate-nav-button {
-    width: 34px;
-    height: 34px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
     border: 1px solid var(--border-color);
     border-radius: 6px;
     background: transparent;
     color: var(--white);
-    font-size: 17px;
+    font-size: 20px;
     cursor: pointer;
-    transition: all 0.25s ease;
+    transition:
+        background 0.25s ease,
+        color 0.25s ease,
+        border-color 0.25s ease;
 }
 
 .certificate-nav-button:hover {
@@ -2061,22 +1985,24 @@ footer p {
 }
 
 #certificate-counter {
+    min-width: 70px;
     color: var(--secondary-color);
     font-size: 12px;
     letter-spacing: 1px;
+    text-align: center;
 }
 
 .certificate-hint {
-    margin: 12px 0 0;
-    color: #777;
-    font-size: 10px;
+    margin: 14px 0 0;
+    color: var(--secondary-color);
+    font-size: 12px;
     text-align: center;
 }
 
 @keyframes certificateSlideIn {
     from {
         opacity: 0;
-        transform: translateX(15px);
+        transform: translateX(14px);
     }
 
     to {
@@ -2085,399 +2011,9 @@ footer p {
     }
 }
 
-/* MOBILE */
-
-@media (max-width: 600px) {
-
-    .certificate-dock {
-        right: 16px;
-        bottom: 16px;
-    }
-
-    .certificate-toggle {
-        padding: 12px 15px;
-    }
-
-    .certificate-panel {
-        right: -2px;
-        bottom: 55px;
-        width: min(320px, calc(100vw - 32px));
-        padding: 18px;
-    }
-
-    .certificate-slide img {
-        height: 220px;
-    }
-}
-
 /* =========================================
-   VISIBLE FLOATING CERTIFICATE
-   ========================================= */
-
-.certificate-dock {
-    position: fixed;
-    right: 28px;
-    bottom: 28px;
-    z-index: 999;
-}
-
-.certificate-panel {
-    position: relative;
-    right: auto;
-    bottom: auto;
-
-    width: 360px;
-    padding: 16px;
-
-    background: #191919;
-    border: 1px solid rgba(21, 122, 40, 0.55);
-    border-radius: 8px;
-
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.45);
-
-    opacity: 1;
-    visibility: visible;
-    transform: none;
-}
-
-.certificate-carousel {
-    position: relative;
-    width: 100%;
-    overflow: hidden;
-    touch-action: pan-y;
-}
-
-.certificate-slide {
-    display: none;
-}
-
-.certificate-slide.active {
-    display: block;
-    animation: certificateSlideIn 0.35s ease;
-}
-
-.certificate-slide img {
-    display: block;
-    width: 100%;
-    height: 255px;
-    object-fit: contain;
-
-    background: #111111;
-    border: 1px solid var(--border-color);
-    border-radius: 5px;
-
-    cursor: pointer;
-    transition: transform 0.3s ease, border-color 0.3s ease;
-}
-
-.certificate-slide img:hover {
-    transform: scale(1.015);
-    border-color: var(--accent-color);
-}
-
-.certificate-navigation {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    margin-top: 9px;
-}
-
-.certificate-nav-button {
-    width: 30px;
-    height: 30px;
-
-    border: 1px solid var(--border-color);
-    border-radius: 5px;
-
-    background: transparent;
-    color: var(--white);
-
-    font-size: 15px;
-    cursor: pointer;
-
-    transition: all 0.25s ease;
-}
-
-.certificate-nav-button:hover {
-    background: var(--accent-color);
-    border-color: var(--accent-color);
-    color: #171717;
-}
-
-#certificate-counter {
-    color: var(--secondary-color);
-    font-size: 11px;
-    letter-spacing: 1px;
-}
-
-@keyframes certificateSlideIn {
-    from {
-        opacity: 0;
-        transform: translateX(12px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
-/* MOBILE */
-
-@media (max-width: 600px) {
-
-    .certificate-dock {
-        right: 14px;
-        bottom: 14px;
-    }
-
-    .certificate-panel {
-        width: 220px;
-        padding: 9px;
-    }
-
-    .certificate-slide img {
-        height: 155px;
-    }
-
-}
-
-/* =========================================
-   HOVER CERTIFICATE PREVIEW
-   ========================================= */
-
-.certificate-dock {
-    position: fixed;
-    right: 28px;
-    bottom: 28px;
-    z-index: 999;
-}
-
-/* BUTTON */
-
-.certificate-toggle {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 9px;
-
-    min-width: 145px;
-    height: 48px;
-    padding: 0 18px;
-
-    border: 1px solid rgba(21, 122, 40, 0.65);
-    border-radius: 7px;
-
-    background: #191919;
-    color: var(--white);
-
-    font-family: inherit;
-    font-size: 13px;
-    font-weight: 600;
-
-    cursor: pointer;
-
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
-
-    transition:
-        background 0.25s ease,
-        color 0.25s ease,
-        transform 0.25s ease,
-        border-color 0.25s ease;
-}
-
-.certificate-toggle:hover {
-    background: var(--accent-color);
-    color: #171717;
-    border-color: var(--accent-color);
-    transform: translateY(-2px);
-}
-
-.certificate-toggle-icon {
-    font-size: 15px;
-}
-
-/* CERTIFICATE PREVIEW */
-
-.certificate-panel {
-    position: absolute;
-
-    right: 0;
-    bottom: 58px;
-
-    width: 315px;
-    padding: 12px;
-
-    background: #191919;
-
-    border: 1px solid rgba(21, 122, 40, 0.55);
-    border-radius: 8px;
-
-    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.45);
-
-    opacity: 0;
-    visibility: hidden;
-
-    transform: translateY(10px) scale(0.97);
-    transform-origin: bottom right;
-
-    transition:
-        opacity 0.25s ease,
-        visibility 0.25s ease,
-        transform 0.25s ease;
-}
-
-/* SHOW WHEN HOVERING THE BUTTON OR PREVIEW */
-
-.certificate-dock:hover .certificate-panel {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0) scale(1);
-}
-
-/* CERTIFICATE IMAGE */
-
-.certificate-carousel {
-    position: relative;
-    width: 100%;
-    overflow: hidden;
-    touch-action: pan-y;
-}
-
-.certificate-slide {
-    display: none;
-}
-
-.certificate-slide.active {
-    display: block;
-    animation: certificateFlash 0.35s ease;
-}
-
-.certificate-slide img {
-    display: block;
-
-    width: 100%;
-    height: 215px;
-
-    object-fit: contain;
-
-    background: #111111;
-
-    border: 1px solid var(--border-color);
-    border-radius: 5px;
-
-    cursor: pointer;
-
-    transition:
-        transform 0.25s ease,
-        border-color 0.25s ease;
-}
-
-.certificate-slide img:hover {
-    transform: scale(1.015);
-    border-color: var(--accent-color);
-}
-
-/* NAVIGATION */
-
-.certificate-navigation {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    margin-top: 9px;
-}
-
-.certificate-nav-button {
-    width: 32px;
-    height: 30px;
-
-    border: 1px solid var(--border-color);
-    border-radius: 5px;
-
-    background: transparent;
-    color: var(--white);
-
-    font-size: 15px;
-
-    cursor: pointer;
-
-    transition: all 0.25s ease;
-}
-
-.certificate-nav-button:hover {
-    background: var(--accent-color);
-    border-color: var(--accent-color);
-    color: #171717;
-}
-
-#certificate-counter {
-    color: var(--secondary-color);
-    font-size: 11px;
-    letter-spacing: 1px;
-}
-
-/* PREVIEW ANIMATION */
-
-@keyframes certificateFlash {
-
-    from {
-        opacity: 0;
-        transform: translateY(8px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-
-}
-
-/* MOBILE */
-
-@media (max-width: 600px) {
-
-    .certificate-dock {
-        right: 14px;
-        bottom: 14px;
-    }
-
-    .certificate-toggle {
-        min-width: 135px;
-        height: 46px;
-    }
-
-    .certificate-panel {
-        width: 260px;
-    }
-
-    .certificate-slide img {
-        height: 175px;
-    }
-
-}
-
-.certificate-dock.open .certificate-panel {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0) scale(1);
-}
-
-/* PROFILE PAGE - FLOATING BUTTON SPACING */
-
-.profile-page .certificate-dock {
-    bottom: 28px;
-    z-index: 1100;
-}
-
-.profile-page .back-to-top {
-    bottom: 90px;
-    z-index: 1000;
-}
-
-/* =========================================
-   LARGE CERTIFICATE VIEWER CONTROLS
+   ENLARGED CERTIFICATE VIEWER CONTROLS
+   Keep the existing .image-viewer styles
    ========================================= */
 
 .certificate-viewer-prev,
@@ -2485,21 +2021,22 @@ footer p {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     width: 48px;
     height: 48px;
     border: 1px solid rgba(21, 122, 40, 0.65);
     border-radius: 50%;
     background: rgba(25, 25, 25, 0.9);
     color: var(--white);
-    font-family: inherit;
     font-size: 22px;
     cursor: pointer;
     z-index: 10;
     transition:
         background 0.25s ease,
         color 0.25s ease,
-        border-color 0.25s ease,
-        transform 0.25s ease;
+        border-color 0.25s ease;
 }
 
 .certificate-viewer-prev {
@@ -2513,8 +2050,8 @@ footer p {
 .certificate-viewer-prev:hover,
 .certificate-viewer-next:hover {
     background: var(--accent-color);
-    color: #171717;
     border-color: var(--accent-color);
+    color: #171717;
 }
 
 .certificate-viewer-counter {
@@ -2532,10 +2069,79 @@ footer p {
     z-index: 10;
 }
 
-/* KEEP CERTIFICATE BUTTON CLICKABLE */
+/* =========================================
+   RESPONSIVE CERTIFICATES
+   ========================================= */
 
-.profile-page .certificate-dock {
-    z-index: 1100;
+@media (max-width: 768px) {
+    .profile-certificates {
+        padding: 80px 6%;
+    }
+
+    .certificate-category {
+        margin-bottom: 38px;
+    }
+
+    .certificate-category h3 {
+        font-size: 20px;
+    }
+
+    .certificate-slide img {
+        height: 340px;
+    }
+
+    .certificate-viewer-prev,
+    .certificate-viewer-next {
+        width: 40px;
+        height: 40px;
+        font-size: 19px;
+    }
+
+    .certificate-viewer-prev {
+        left: 12px;
+    }
+
+    .certificate-viewer-next {
+        right: 12px;
+    }
+
+    .certificate-viewer-counter {
+        bottom: 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    .profile-certificates {
+        padding: 65px 5%;
+    }
+
+    .certificate-slide img {
+        height: 260px;
+    }
+
+    .certificate-navigation {
+        gap: 16px;
+    }
+
+    .certificate-nav-button {
+        width: 38px;
+        height: 38px;
+    }
+
+    .certificate-viewer-prev,
+    .certificate-viewer-next {
+        width: 36px;
+        height: 36px;
+        font-size: 17px;
+    }
+
+    .certificate-viewer-prev {
+        left: 6px;
+    }
+
+    .certificate-viewer-next {
+        right: 6px;
+    }
 }
 
 /* =========================================
@@ -5979,4 +5585,1106 @@ section + section {
         margin: 0;
         text-align: center;
     }
+}
+
+/* ==========================================
+   HWANWRITES — PREMIUM EMERALD FOUNDATION
+   Phase 1: Global visual atmosphere
+========================================== */
+
+:root {
+    --hw-bg: #171917;
+    --hw-bg-deep: #101310;
+    --hw-emerald: #6F9F78;
+    --hw-sage: #8FBA95;
+    --hw-cream: #F4F4EF;
+}
+
+/* Consistent dark emerald atmosphere */
+html {
+    background-color: var(--hw-bg-deep);
+}
+
+body {
+    background-color: var(--hw-bg);
+    background-image:
+        radial-gradient(
+            ellipse at 8% 12%,
+            rgba(55, 112, 70, 0.16),
+            transparent 34%
+        ),
+        radial-gradient(
+            ellipse at 92% 42%,
+            rgba(45, 91, 57, 0.11),
+            transparent 32%
+        ),
+        radial-gradient(
+            ellipse at 50% 95%,
+            rgba(54, 99, 64, 0.08),
+            transparent 38%
+        );
+    color: var(--hw-cream);
+}
+
+/* Homepage and profile hero atmosphere */
+.hero,
+.profile-hero {
+    position: relative;
+    isolation: isolate;
+    background-color: transparent;
+    background-image:
+        radial-gradient(
+            ellipse at 50% 45%,
+            rgba(52, 105, 65, 0.14),
+            transparent 68%
+        );
+}
+
+/* Subtle transitions between major content sections */
+.services,
+.trust-section,
+.portfolio,
+.profile-journey {
+    background-color: transparent;
+    background-image:
+        linear-gradient(
+            180deg,
+            rgba(23, 25, 23, 0.18),
+            rgba(16, 19, 16, 0.34)
+        );
+}
+
+/* Refined emerald section labels */
+.section-label,
+.small-heading {
+    color: var(--hw-sage);
+}
+
+/* Preserve readable text contrast */
+h1,
+h2,
+h3 {
+    text-wrap: balance;
+}
+
+/* Avoid unnecessary background effects on small screens */
+@media (max-width: 600px) {
+    body {
+        background-attachment: scroll;
+    }
+}
+
+/* Respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto;
+    }
+}
+
+/* ==================================================
+   HWANWRITES — SHARED DEEP EMERALD BACKGROUND
+   Homepage + Profile Page
+================================================== */
+
+:root {
+    --hw-bg: #050906;
+    --hw-bg-deep: #030503;
+    --hw-emerald: #6F9F78;
+    --hw-sage: #8FBA95;
+    --hw-cream: #F4F4EF;
+}
+
+/* GLOBAL BACKGROUND */
+
+html {
+    min-height: 100%;
+    background-color: var(--hw-bg-deep);
+}
+
+body {
+    min-height: 100vh;
+    background-color: var(--hw-bg);
+    background-image:
+        radial-gradient(ellipse at 0% 10%, rgba(45, 115, 65, .30), transparent 30%),
+        radial-gradient(ellipse at 100% 28%, rgba(38, 105, 57, .24), transparent 28%),
+        radial-gradient(ellipse at 0% 58%, rgba(31, 91, 48, .20), transparent 27%),
+        radial-gradient(ellipse at 100% 82%, rgba(45, 115, 65, .22), transparent 30%),
+        linear-gradient(rgba(143, 186, 149, .025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(143, 186, 149, .025) 1px, transparent 1px);
+    background-size:
+        auto, auto, auto, auto,
+        48px 48px, 48px 48px;
+    background-repeat:
+        no-repeat, no-repeat, no-repeat, no-repeat,
+        repeat, repeat;
+    color: var(--hw-cream);
+}
+
+/* HOMEPAGE — SHOW SHARED BACKGROUND */
+
+.hero,
+#home,
+.how-it-works,
+#how-it-works,
+.services,
+.portfolio,
+.about,
+.why-hwanwrites,
+.more-about-me {
+    background-color: transparent !important;
+    background-image: none !important;
+}
+
+/* PROFILE PAGE — SHOW SHARED BACKGROUND */
+
+.profile-hero,
+.profile-journey,
+.profile-story,
+.profile-tools,
+.tools-showcase,
+.profile-certificates,
+.profile-gallery,
+.profile-milestones {
+    background-color: transparent !important;
+    background-image: none !important;
+}
+
+/* CONTACT SECTIONS */
+
+.contact,
+.profile-contact {
+    background-color: var(--hw-bg) !important;
+    background-image:
+        radial-gradient(
+            ellipse at 50% 100%,
+            rgba(38, 105, 57, .20),
+            transparent 60%
+        ) !important;
+}
+
+/* SECTION LABELS */
+
+.section-label,
+.small-heading {
+    color: var(--hw-sage);
+}
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+    body {
+        background-attachment: scroll;
+    }
+}
+
+```css
+/* =========================================
+   HWANWRITES — EMERALD CARD DESIGN
+========================================= */
+
+/* Shared card appearance */
+.services .service-card,
+.portfolio .portfolio-card,
+.milestone-card,
+.process-card,
+.trust-card,
+.testimonial-card,
+.tools-showcase-image,
+.more-about-photo {
+    background-color: rgba(18, 32, 23, 0.88);
+    border: 1px solid rgba(111, 159, 120, 0.28);
+    box-shadow:
+        0 8px 24px rgba(0, 0, 0, 0.16),
+        inset 0 1px 0 rgba(143, 186, 149, 0.06);
+    transition:
+        border-color 0.3s ease,
+        box-shadow 0.3s ease,
+        transform 0.3s ease;
+}
+
+/* Services cards */
+.services .service-card {
+    background:
+        radial-gradient(
+            circle at 100% 100%,
+            rgba(65, 125, 78, 0.16),
+            transparent 36%
+        ),
+        linear-gradient(
+            145deg,
+            rgba(32, 49, 37, 0.96),
+            rgba(13, 22, 16, 0.96)
+        );
+    border-radius: 14px;
+}
+
+/* Process cards */
+.process-card {
+    background:
+        linear-gradient(
+            145deg,
+            rgba(49, 76, 56, 0.96),
+            rgba(20, 35, 25, 0.98)
+        );
+    border: 1px solid rgba(143, 186, 149, 0.24);
+}
+
+/* Milestone cards */
+.milestone-card {
+    background:
+        linear-gradient(
+            145deg,
+            rgba(35, 53, 40, 0.96),
+            rgba(14, 24, 17, 0.98)
+        );
+    border-radius: 12px;
+}
+
+/* Trust and testimonial cards */
+.trust-card,
+.testimonial-card,
+.portfolio .portfolio-card {
+    background:
+        radial-gradient(
+            circle at 100% 0%,
+            rgba(72, 132, 84, 0.13),
+            transparent 40%
+        ),
+        rgba(19, 31, 22, 0.94);
+    border-radius: 14px;
+}
+
+/* Tools and profile image containers */
+.tools-showcase-image,
+.more-about-photo {
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+/* Card hover effect */
+.services .service-card:hover,
+.portfolio .portfolio-card:hover,
+.milestone-card:hover,
+.process-card:hover,
+.trust-card:hover,
+.testimonial-card:hover {
+    border-color: rgba(143, 186, 149, 0.62);
+    box-shadow:
+        0 12px 30px rgba(0, 0, 0, 0.24),
+        0 0 22px rgba(65, 125, 78, 0.10);
+    transform: translateY(-4px);
+}
+
+/* Keep card headings bright and readable */
+.service-card h3,
+.portfolio-card h3,
+.milestone-card h3,
+.process-card h3,
+.trust-card h3,
+.testimonial-card h3 {
+    color: #F4F4EF;
+}
+
+/* Emerald accents */
+.service-card .service-number,
+.process-number,
+.milestone-card span,
+.section-label {
+    color: #8FBA95;
+}
+
+/* Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    .services .service-card,
+    .portfolio .portfolio-card,
+    .milestone-card,
+    .process-card,
+    .trust-card,
+    .testimonial-card {
+        transition: none;
+    }
+
+    .services .service-card:hover,
+    .portfolio .portfolio-card:hover,
+    .milestone-card:hover,
+    .process-card:hover,
+    .trust-card:hover,
+    .testimonial-card:hover {
+        transform: none;
+    }
+}
+
+/* ==========================================
+   HWANWRITES — RESPONSIVE LAYOUT OVERRIDES
+   Desktop • Tablet • Mobile
+========================================== */
+
+/* Prevent unwanted horizontal overflow */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    width: 100%;
+    overflow-x: clip;
+    scroll-behavior: smooth;
+}
+
+body {
+    width: 100%;
+    min-width: 0;
+    margin: 0;
+    overflow-x: clip;
+}
+
+img,
+video,
+iframe {
+    max-width: 100%;
+}
+
+img,
+video {
+    height: auto;
+}
+
+section,
+main,
+header,
+footer {
+    min-width: 0;
+}
+
+h1,
+h2,
+h3,
+p,
+a,
+button {
+    overflow-wrap: break-word;
+}
+
+/* Flexible content containers */
+.hero-content,
+.section-heading,
+.profile-hero-content,
+.profile-story-content,
+.more-about-layout,
+.milestone-container,
+.tools-container,
+.certificate-container,
+.profile-gallery-container,
+.timeline,
+.service-container,
+.portfolio-container,
+.feature-container {
+    max-width: 100%;
+}
+
+/* ==========================================
+   LAPTOPS AND SMALL DESKTOPS
+========================================== */
+
+@media (max-width: 1100px) {
+    .services,
+    .portfolio,
+    .about,
+    .contact,
+    .how-it-works,
+    .why-hwanwrites,
+    .profile-hero,
+    .profile-journey,
+    .profile-story,
+    .profile-milestones,
+    .profile-tools,
+    .profile-certificates,
+    .profile-gallery,
+    .profile-contact {
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+
+    .service-container,
+    .portfolio-container,
+    .milestone-container,
+    .tools-container,
+    .certificate-container {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .profile-hero-content {
+        gap: 32px;
+    }
+
+    .profile-intro h1 {
+        font-size: clamp(36px, 5vw, 52px);
+    }
+
+    .profile-photo,
+    .profile-photo img {
+        max-width: 100%;
+    }
+}
+
+/* ==========================================
+   TABLETS
+========================================== */
+
+@media (max-width: 768px) {
+    /* Navigation */
+    header nav {
+        position: relative;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+    }
+
+    .logo {
+        font-size: 22px;
+    }
+
+    .menu-toggle {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 44px;
+        min-height: 44px;
+        cursor: pointer;
+    }
+
+    /* Single-column hero and profile sections */
+    .hero-content {
+        width: 100%;
+        max-width: 680px;
+        margin-inline: auto;
+    }
+
+    .hero h1 {
+        font-size: clamp(38px, 8vw, 60px);
+        line-height: 1.08;
+    }
+
+    .hero-description {
+        max-width: 100%;
+    }
+
+    .profile-hero-content,
+    .profile-story-content,
+    .more-about-layout {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 30px;
+    }
+
+    .profile-intro,
+    .profile-photo,
+    .more-about-column,
+    .more-about-photo {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+    }
+
+    .profile-photo img,
+    .more-about-photo img {
+        display: block;
+        width: 100%;
+        height: auto;
+        margin-inline: auto;
+        object-fit: contain;
+    }
+
+    /* Cards and grids */
+    .service-container,
+    .portfolio-container,
+    .feature-container,
+    .milestone-container,
+    .tools-container,
+    .certificate-container {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .timeline-item {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    /* Allow process cards to scroll horizontally */
+    .process-scroll {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: auto;
+        overscroll-behavior-x: contain;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .process-container {
+        width: max-content;
+        max-width: none;
+    }
+
+    /* Images, videos, and gallery */
+    .tools-showcase-image video,
+    .tools-showcase-image img {
+        display: block;
+        width: 100%;
+        height: auto;
+    }
+
+    .profile-gallery-container {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    /* Headings and spacing */
+    .section-heading h2,
+    .profile-story-heading h2 {
+        font-size: clamp(26px, 5vw, 38px);
+    }
+
+    .hero,
+    .services,
+    .portfolio,
+    .about,
+    .contact,
+    .how-it-works,
+    .why-hwanwrites,
+    .profile-hero,
+    .profile-journey,
+    .profile-story,
+    .profile-milestones,
+    .profile-tools,
+    .profile-certificates,
+    .profile-gallery,
+    .profile-contact {
+        padding-top: 64px;
+        padding-bottom: 64px;
+    }
+}
+
+/* ==========================================
+   MOBILE PHONES
+========================================== */
+
+@media (max-width: 480px) {
+    .hero,
+    .services,
+    .portfolio,
+    .about,
+    .contact,
+    .how-it-works,
+    .why-hwanwrites,
+    .profile-hero,
+    .profile-journey,
+    .profile-story,
+    .profile-milestones,
+    .profile-tools,
+    .profile-certificates,
+    .profile-gallery,
+    .profile-contact {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .hero h1 {
+        font-size: clamp(34px, 10vw, 46px);
+        letter-spacing: -1px;
+    }
+
+    .hero-description,
+    .profile-intro p {
+        font-size: 15px;
+        line-height: 1.75;
+    }
+
+    .hero-buttons {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+    }
+
+    .hero-buttons .button {
+        width: 100%;
+        min-height: 46px;
+        text-align: center;
+    }
+
+    .service-container,
+    .portfolio-container,
+    .feature-container,
+    .milestone-container,
+    .tools-container,
+    .certificate-container,
+    .profile-gallery-container {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .service-card,
+    .service-card-interactive,
+    .portfolio-card,
+    .feature-card,
+    .milestone-card,
+    .tools-group,
+    .certificate-card {
+        width: 100%;
+        min-width: 0;
+        padding: 20px;
+    }
+
+    .profile-intro h1 {
+        font-size: clamp(34px, 9vw, 44px);
+        line-height: 1.12;
+    }
+
+    .profile-intro h2 {
+        font-size: 17px;
+        line-height: 1.5;
+    }
+
+    .profile-contact h2 {
+        font-size: clamp(28px, 8vw, 38px);
+    }
+
+    .section-heading {
+        margin-bottom: 30px;
+    }
+
+    /* Keep media and embedded content inside the screen */
+    .portfolio-image,
+    .tools-showcase-image,
+    .more-about-photo {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .portfolio-image img,
+    .profile-gallery-card img,
+    .tools-showcase-image video {
+        display: block;
+        width: 100%;
+        max-width: 100%;
+    }
+
+    /* Avoid hover movement on touch-sized layouts */
+    .service-card:hover,
+    .portfolio-card:hover,
+    .feature-card:hover,
+    .milestone-card:hover {
+        transform: none;
+    }
+}
+
+/* Respect reduced-motion settings */
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+}
+
+
+/* ==========================================
+   HWANWRITES — RESPONSIVE FIXES
+========================================== */
+
+/* 1. ABOUT HWANWRITES
+   Stack the description instead of squeezing it
+   beside the heading on narrow screens.
+========================================== */
+
+@media (max-width: 768px) {
+    .about .about-content,
+    .about .about-container,
+    .about .about-layout {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .about .about-description,
+    .about .about-text,
+    .about .about-content p {
+        min-width: 0;
+        max-width: 100%;
+        overflow-wrap: anywhere;
+    }
+}
+
+/* ==========================================
+   2. MOBILE BURGER MENU
+   Keep the icon and its lines clearly visible.
+========================================== */
+
+@media (max-width: 768px) {
+    .menu-toggle,
+    .menu-toggle span,
+    .menu-toggle i,
+    .hamburger,
+    .hamburger span {
+        color: #F4F4EF;
+    }
+
+    .menu-toggle {
+        background: rgba(111, 159, 120, 0.12);
+        border: 1px solid rgba(143, 186, 149, 0.35);
+        border-radius: 8px;
+    }
+
+    .menu-toggle span,
+    .hamburger span {
+        background-color: #F4F4EF;
+    }
+}
+
+/* ==========================================
+   3. PROFILE — THE PERSON BEHIND HWANWRITES
+   Keep the image framed and avoid excessive zoom-out.
+========================================== */
+
+@media (max-width: 768px) {
+    .profile-hero .profile-photo {
+        width: 100%;
+        max-width: 420px;
+        margin-inline: auto;
+        aspect-ratio: 4 / 5;
+        overflow: hidden;
+    }
+
+    .profile-hero .profile-photo img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center 25%;
+    }
+}
+
+/* ==========================================
+   4. PROFILE — MORE ABOUT ME
+   Preserve the square image frame.
+========================================== */
+
+@media (max-width: 768px) {
+    .more-about-photo {
+        width: 100%;
+        max-width: 420px;
+        aspect-ratio: 1 / 1;
+        margin-inline: auto;
+        overflow: hidden;
+    }
+
+    .more-about-photo img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+    }
+}
+
+
+
+/* MOBILE NAVIGATION PANEL — DEEP EMERALD */
+@media (max-width: 768px) {
+    nav ul,
+    .nav-links,
+    .navbar-nav,
+    .mobile-menu {
+        background: #07110B !important;
+        border: 1px solid rgba(143, 186, 149, 0.25);
+        border-radius: 12px;
+        box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
+    }
+
+    /* Navigation links */
+    nav ul a,
+    .nav-links a,
+    .navbar-nav a,
+    .mobile-menu a {
+        display: block;
+        color: #F4F4EF !important;
+        text-decoration: none;
+        border-radius: 6px;
+        transition: color 0.2s ease, background-color 0.2s ease;
+    }
+
+    /* HOVER — GRAY TEXT INDICATION */
+    nav ul a:hover,
+    .nav-links a:hover,
+    .navbar-nav a:hover,
+    .mobile-menu a:hover {
+        color: #A0A0A0 !important;
+        background-color: rgba(255, 255, 255, 0.08) !important;
+        opacity: 1 !important;
+    }
+
+    /* ACTIVE PAGE INDICATION */
+    nav ul a.active,
+    nav ul a[aria-current="page"],
+    .nav-links a.active,
+    .nav-links a[aria-current="page"],
+    .navbar-nav a.active,
+    .navbar-nav a[aria-current="page"],
+    .mobile-menu a.active,
+    .mobile-menu a[aria-current="page"] {
+        color: #A0A0A0 !important;
+        background-color: rgba(255, 255, 255, 0.08);
+    }
+
+    /* CLICK FEEDBACK */
+    nav ul a:active,
+    .nav-links a:active,
+    .navbar-nav a:active,
+    .mobile-menu a:active {
+        color: #A0A0A0 !important;
+        opacity: 0.7;
+    }
+
+    /* KEYBOARD FOCUS */
+    nav ul a:focus-visible,
+    .nav-links a:focus-visible,
+    .navbar-nav a:focus-visible,
+    .mobile-menu a:focus-visible {
+        outline: 2px solid #8FBA95;
+        outline-offset: 3px;
+    }
+}
+
+/* DESKTOP NAVIGATION — HOVER EFFECT */
+@media (min-width: 769px) {
+    nav a,
+    .nav-links a,
+    .navbar-nav a,
+    .mobile-menu a {
+        transition: color 0.2s ease, opacity 0.2s ease;
+    }
+
+    nav a:hover,
+    .nav-links a:hover,
+    .navbar-nav a:hover,
+    .mobile-menu a:hover {
+        color: #A0A0A0 !important;
+        opacity: 1 !important;
+    }
+
+    /* ACTIVE PAGE INDICATION */
+    nav a.active,
+    nav a[aria-current="page"],
+    .nav-links a.active,
+    .nav-links a[aria-current="page"],
+    .navbar-nav a.active,
+    .navbar-nav a[aria-current="page"] {
+        color: #A0A0A0 !important;
+    }
+}
+
+
+/* TWO-COLUMN CERTIFICATE GALLERY */
+
+.profile-certificates .certificate-columns {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 28px;
+    max-width: 1200px;
+    margin: 0 auto;
+    align-items: start;
+}
+
+.profile-certificates .certificate-category {
+    min-width: 0;
+    margin: 0;
+    padding: 22px;
+    background: #191919;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    text-align: left;
+}
+
+.profile-certificates .certificate-category h3 {
+    min-height: 56px;
+    margin: 0 0 18px;
+    font-size: 20px;
+    line-height: 1.4;
+    color: var(--white);
+}
+
+.profile-certificates .certificate-carousel {
+    max-width: none;
+}
+
+.profile-certificates .certificate-slide img {
+    height: 300px;
+}
+
+.profile-certificates .certificate-navigation {
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.profile-certificates .certificate-hint {
+    margin-top: 24px;
+}
+
+@media (max-width: 768px) {
+    .profile-certificates .certificate-columns {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+
+    .profile-certificates .certificate-category h3 {
+        min-height: 0;
+    }
+
+    .profile-certificates .certificate-slide img {
+        height: 320px;
+    }
+}
+
+@media (max-width: 480px) {
+    .profile-certificates .certificate-category {
+        padding: 16px;
+    }
+
+    .profile-certificates .certificate-slide img {
+        height: 250px;
+    }
+}
+
+
+
+/* =========================================
+   CERTIFICATE CATEGORY LAYOUT & ALIGNMENT
+   ========================================= */
+
+.profile-certificates .certificate-columns {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 28px;
+    align-items: stretch;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.profile-certificates .certificate-category {
+    display: flex;
+    flex-direction: column;
+    align-self: stretch;
+    min-width: 0;
+    box-sizing: border-box;
+    padding: 22px;
+    height: 100%;
+}
+
+.profile-certificates .certificate-category h3 {
+    min-height: 56px;
+    margin: 0 0 12px;
+    display: flex;
+    align-items: flex-start;
+}
+
+.profile-certificates .certificate-category-description {
+    min-height: 48px;
+    margin: 0 0 18px;
+}
+
+.profile-certificates .certificate-carousel {
+    position: relative;
+    width: 100%;
+    min-width: 0;
+    margin: 0;
+}
+
+/* Show only the active certificate */
+.profile-certificates .certificate-slide {
+    display: none;
+    width: 100%;
+    pointer-events: none;
+}
+
+.profile-certificates .certificate-slide.active {
+    display: block;
+    pointer-events: auto;
+}
+
+.profile-certificates .certificate-slide.active img {
+    display: block;
+    width: 100%;
+    height: 300px;
+    object-fit: contain;
+    cursor: zoom-in;
+    pointer-events: auto;
+    position: relative;
+    z-index: 2;
+}
+
+/* Separate navigation for each category */
+.profile-certificates .certificate-navigation {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    width: 100%;
+    margin-top: 16px;
+}
+
+.profile-certificates .certificate-nav-button {
+    cursor: pointer;
+    pointer-events: auto;
+}
+
+/* Mobile layout */
+@media (max-width: 768px) {
+    .profile-certificates .certificate-columns {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 24px;
+    }
+
+    .profile-certificates .certificate-category h3,
+    .profile-certificates .certificate-category-description {
+        min-height: 0;
+    }
+
+    .profile-certificates .certificate-slide.active img {
+        height: 320px;
+    }
+}
+
+@media (max-width: 480px) {
+    .profile-certificates .certificate-category {
+        padding: 16px;
+    }
+
+    .profile-certificates .certificate-slide.active img {
+        height: 250px;
+    }
+}
+
+
+/* CENTER CERTIFICATES SECTION HEADING */
+.profile-certificates > .section-heading {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.profile-certificates > .section-heading .section-label {
+    display: block;
+    text-align: center;
+}
+
+.profile-certificates > .section-heading h2 {
+    text-align: center;
+}
+
+.profile-certificates > .section-heading p {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
 }

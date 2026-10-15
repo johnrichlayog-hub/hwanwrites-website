@@ -86,241 +86,213 @@ revealElements.forEach(function (element) {
     revealObserver.observe(element);
 });
 
+
+
 /* =========================================
-   FLOATING CERTIFICATE CAROUSEL
+   TWO INDEPENDENT CERTIFICATE CAROUSELS
    ========================================= */
 
-const certificateDock = document.querySelector(".certificate-dock");
-const certificateToggle = document.getElementById("certificate-toggle");
-const certificateClose = document.getElementById("certificate-close");
-const certificateSlides = document.querySelectorAll(".certificate-slide");
-const certificatePrev = document.getElementById("certificate-prev");
-const certificateNext = document.getElementById("certificate-next");
-const certificateCounter = document.getElementById("certificate-counter");
-const certificateCarousel = document.getElementById("certificate-carousel");
+(() => {
+    const imageViewer = document.getElementById("image-viewer");
+    const viewerImage = document.getElementById("viewer-image");
+    const viewerPrev = document.getElementById("certificate-viewer-prev");
+    const viewerNext = document.getElementById("certificate-viewer-next");
+    const viewerCounter = document.getElementById("certificate-viewer-counter");
 
-const viewerImage = document.getElementById("viewer-image");
-
-const certificateViewerPrev = document.getElementById("certificate-viewer-prev");
-const certificateViewerNext = document.getElementById("certificate-viewer-next");
-const certificateViewerCounter = document.getElementById("certificate-viewer-counter");
-
-let currentCertificate = 0;
-let viewerCertificate = 0;
-
-/* SHOW CERTIFICATE IN PREVIEW */
-
-function showCertificate(index) {
-    if (!certificateSlides.length) return;
-
-    if (index < 0) {
-        currentCertificate = certificateSlides.length - 1;
-    } else if (index >= certificateSlides.length) {
-        currentCertificate = 0;
-    } else {
-        currentCertificate = index;
-    }
-
-    certificateSlides.forEach(function (slide, i) {
-        slide.classList.toggle("active", i === currentCertificate);
-    });
-
-    if (certificateCounter) {
-        certificateCounter.textContent =
-            (currentCertificate + 1) + " / " + certificateSlides.length;
-    }
-}
-
-/* OPEN LARGE CERTIFICATE VIEWER */
-
-function openCertificateViewer(index) {
-
-    if (!certificateSlides.length || !imageViewer || !viewerImage) {
+    if (!imageViewer || !viewerImage) {
+        console.error("Certificate viewer HTML is missing.");
         return;
     }
 
-    if (index < 0) {
-        viewerCertificate = certificateSlides.length - 1;
-    } else if (index >= certificateSlides.length) {
-        viewerCertificate = 0;
-    } else {
-        viewerCertificate = index;
+    let activeGallery = null;
+    let viewerIndex = 0;
+
+    function closeImage() {
+        imageViewer.classList.remove("active");
+        activeGallery = null;
     }
 
-    const certificateImage =
-        certificateSlides[viewerCertificate].querySelector("img");
+    function updateViewer() {
+        if (!activeGallery) return;
 
-    if (!certificateImage) return;
+        const slide = activeGallery.slides[viewerIndex];
+        const image = slide?.querySelector("img");
+        if (!image) return;
 
-    viewerImage.src = certificateImage.src;
-    viewerImage.alt = certificateImage.alt;
+        viewerImage.src = image.src;
+        viewerImage.alt = image.alt || "Certificate preview";
 
-    if (certificateViewerCounter) {
-        certificateViewerCounter.textContent =
-            (viewerCertificate + 1) + " / " + certificateSlides.length;
+        if (viewerCounter) {
+            viewerCounter.textContent =
+                `${viewerIndex + 1} / ${activeGallery.slides.length}`;
+        }
     }
 
-    imageViewer.classList.add("active");
-}
+    function moveViewer(direction) {
+        if (!activeGallery || !activeGallery.slides.length) return;
 
-    if (certificateViewerPrev) {
-    certificateViewerPrev.addEventListener("click", function (event) {
-        event.stopPropagation();
-        previousViewerCertificate();
-    });
-}
+        const total = activeGallery.slides.length;
+        viewerIndex = (viewerIndex + direction + total) % total;
 
-if (certificateViewerNext) {
-    certificateViewerNext.addEventListener("click", function (event) {
-        event.stopPropagation();
-        nextViewerCertificate();
-    });
-}
+        activeGallery.show(viewerIndex);
+        updateViewer();
+    }
 
-/* NEXT CERTIFICATE IN LARGE VIEWER */
+    function createCertificateGallery(carouselId, prevId, nextId, counterId) {
+        const carousel = document.getElementById(carouselId);
+        const prev = document.getElementById(prevId);
+        const next = document.getElementById(nextId);
+        const counter = document.getElementById(counterId);
 
-function nextViewerCertificate() {
-    openCertificateViewer(viewerCertificate + 1);
-}
-
-/* PREVIOUS CERTIFICATE IN LARGE VIEWER */
-
-function previousViewerCertificate() {
-    openCertificateViewer(viewerCertificate - 1);
-}
-
-/* CERTIFICATE BUTTON */
-
-if (certificateToggle && certificateDock) {
-
-    certificateToggle.addEventListener("click", function (event) {
-        event.stopPropagation();
-        certificateDock.classList.add("open");
-    });
-
-    document.addEventListener("click", function (event) {
-
-        if (!certificateDock.contains(event.target)) {
-            certificateDock.classList.remove("open");
+        if (!carousel) {
+            console.error(`Certificate carousel not found: ${carouselId}`);
+            return null;
         }
 
-    });
-}
+        const slides = Array.from(
+            carousel.querySelectorAll(".certificate-slide")
+        );
 
-/* PREVIEW NAVIGATION */
+        if (!slides.length) {
+            console.error(`No certificate slides found in ${carouselId}`);
+            return null;
+        }
 
-if (certificatePrev) {
-    certificatePrev.addEventListener("click", function (event) {
-        event.stopPropagation();
-        showCertificate(currentCertificate - 1);
-    });
-}
+        let current = 0;
+        let touchStartX = 0;
 
-if (certificateNext) {
-    certificateNext.addEventListener("click", function (event) {
-        event.stopPropagation();
-        showCertificate(currentCertificate + 1);
-    });
-}
+        function show(index) {
+            current = (index + slides.length) % slides.length;
 
-/* CLICK CERTIFICATE PREVIEW */
+            slides.forEach((slide, i) => {
+                slide.classList.toggle("active", i === current);
+            });
 
-certificateSlides.forEach(function (slide, index) {
+            if (counter) {
+                counter.textContent = `${current + 1} / ${slides.length}`;
+            }
+        }
 
-    const image = slide.querySelector("img");
-
-    if (image) {
-        image.onclick = function (event) {
-            event.stopPropagation();
-
-            viewerCertificate = index;
-            openCertificateViewer(viewerCertificate);
+        const gallery = {
+            slides,
+            show,
+            get current() {
+                return current;
+            }
         };
-    }
 
-});
+        function openViewer(index) {
+            show(index);
+            activeGallery = gallery;
+            viewerIndex = current;
 
-/* SWIPE SUPPORT FOR PREVIEW */
-
-let certificateTouchStartX = 0;
-let certificateTouchEndX = 0;
-
-if (certificateCarousel) {
-
-    certificateCarousel.addEventListener("touchstart", function (event) {
-        certificateTouchStartX = event.changedTouches[0].screenX;
-    }, { passive: true });
-
-    certificateCarousel.addEventListener("touchend", function (event) {
-
-        certificateTouchEndX = event.changedTouches[0].screenX;
-
-        const swipeDistance =
-            certificateTouchEndX - certificateTouchStartX;
-
-        if (Math.abs(swipeDistance) < 40) {
-            return;
+            updateViewer();
+            imageViewer.classList.add("active");
         }
 
-        if (swipeDistance < 0) {
-            showCertificate(currentCertificate + 1);
-        } else {
-            showCertificate(currentCertificate - 1);
-        }
+        slides.forEach((slide, index) => {
+            const image = slide.querySelector("img");
+            if (!image) return;
 
-    }, { passive: true });
-}
+            image.style.cursor = "zoom-in";
+            image.setAttribute("tabindex", "0");
+            image.setAttribute("role", "button");
+            image.setAttribute(
+                "aria-label",
+                `View certificate ${index + 1} of ${slides.length} in full size`
+            );
 
-/* LARGE VIEWER KEYBOARD NAVIGATION */
+            image.addEventListener("click", () => {
+                openViewer(index);
+            });
 
-document.addEventListener("keydown", function (event) {
+            image.addEventListener("keydown", event => {
+                if (event.key === "Enter" || event.key === " ") {
+                    event.preventDefault();
+                    openViewer(index);
+                }
+            });
+        });
 
-    if (!imageViewer || !imageViewer.classList.contains("active")) {
-        return;
+        prev?.addEventListener("click", () => show(current - 1));
+        next?.addEventListener("click", () => show(current + 1));
+
+        carousel.addEventListener("touchstart", event => {
+            touchStartX = event.changedTouches[0].screenX;
+        }, { passive: true });
+
+        carousel.addEventListener("touchend", event => {
+            const distance =
+                event.changedTouches[0].screenX - touchStartX;
+
+            if (Math.abs(distance) < 40) return;
+
+            show(distance < 0 ? current + 1 : current - 1);
+        }, { passive: true });
+
+        show(0);
+        return gallery;
     }
 
-    if (event.key === "ArrowRight") {
-        nextViewerCertificate();
-    }
+    viewerPrev?.addEventListener("click", event => {
+        event.stopPropagation();
+        moveViewer(-1);
+    });
 
-    if (event.key === "ArrowLeft") {
-        previousViewerCertificate();
-    }
+    viewerNext?.addEventListener("click", event => {
+        event.stopPropagation();
+        moveViewer(1);
+    });
 
-});
+    imageViewer.addEventListener("click", event => {
+        if (event.target === imageViewer) closeImage();
+    });
 
-/* SWIPE SUPPORT FOR LARGE VIEWER */
+    imageViewer.querySelector(".image-viewer-close")
+        ?.addEventListener("click", event => {
+            event.stopPropagation();
+            closeImage();
+        });
 
-let viewerTouchStartX = 0;
-let viewerTouchEndX = 0;
+    let viewerTouchStartX = 0;
 
-if (imageViewer) {
-
-    imageViewer.addEventListener("touchstart", function (event) {
+    imageViewer.addEventListener("touchstart", event => {
         viewerTouchStartX = event.changedTouches[0].screenX;
     }, { passive: true });
 
-    imageViewer.addEventListener("touchend", function (event) {
+    imageViewer.addEventListener("touchend", event => {
+        if (!imageViewer.classList.contains("active")) return;
 
-        viewerTouchEndX = event.changedTouches[0].screenX;
+        const distance =
+            event.changedTouches[0].screenX - viewerTouchStartX;
 
-        const swipeDistance =
-            viewerTouchEndX - viewerTouchStartX;
+        if (Math.abs(distance) < 40) return;
 
-        if (Math.abs(swipeDistance) < 40) {
-            return;
-        }
-
-        if (swipeDistance < 0) {
-            nextViewerCertificate();
-        } else {
-            previousViewerCertificate();
-        }
-
+        moveViewer(distance < 0 ? 1 : -1);
     }, { passive: true });
-}
 
-showCertificate(0);
+    document.addEventListener("keydown", event => {
+        if (!imageViewer.classList.contains("active")) return;
+
+        if (event.key === "Escape") closeImage();
+        if (event.key === "ArrowRight") moveViewer(1);
+        if (event.key === "ArrowLeft") moveViewer(-1);
+    });
+
+    createCertificateGallery(
+        "freelancing-carousel",
+        "freelancing-prev",
+        "freelancing-next",
+        "freelancing-counter"
+    );
+
+    createCertificateGallery(
+        "other-certificates-carousel",
+        "other-prev",
+        "other-next",
+        "other-counter"
+    );
+})();
 
 /* =========================================
    INTERACTIVE SERVICE DETAILS
