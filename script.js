@@ -86,8 +86,6 @@ revealElements.forEach(function (element) {
     revealObserver.observe(element);
 });
 
-
-
 /* =========================================
    TWO INDEPENDENT CERTIFICATE CAROUSELS
    ========================================= */
@@ -295,7 +293,7 @@ revealElements.forEach(function (element) {
 })();
 
 /* =========================================
-   INTERACTIVE SERVICE DETAILS
+   INTERACTIVE SERVICE DETAILS + POPUP
    ========================================= */
 
 const serviceDetails = {
@@ -304,22 +302,22 @@ const serviceDetails = {
         title: "Research Assistance",
         items: [
             "Complete Research Paper",
-            "Chapter 1-5 Only",
+            "Chapter 1–5 Only",
             "Per-Chapter",
             "Per-Parts",
-            "Questionnaire Construction",
+            "Questionnaire (Adopted, Modified, Researchers'-Made)",
             "Research Abstract",
             "Research Gap",
             "Bibliography",
             "Appendices",
             "Table of Contents",
+            "PPT",
             "Curriculum Vitae",
             "Research Title Proposal",
-            "Research Proposal",
+            "Questionnaire Construction (with Google Forms setup)",
             "Data Encoding",
             "Data Cleaning",
-            "Statistical Analysis",
-            "Thematic Analysis",
+            "Statistical Analysis (Excel/SPSS/JASP)",
             "IMRaD Assistance",
             "Oral Defense PPT",
             "APA 7 Formatting",
@@ -328,9 +326,7 @@ const serviceDetails = {
             "Grammar Checking",
             "Proofreading",
             "Manual Paraphrasing",
-            "Manual AI Content Revision",
-            "Turnitin Scan (AI & Plagiarism)",
-            "Paper Consultation"
+            "Manual AI Content Revision"
         ]
     },
 
@@ -338,22 +334,30 @@ const serviceDetails = {
         number: "02",
         title: "Academic Services",
         items: [
-            "Essay",
-            "Reflection Paper",
-            "Reaction Paper",
-            "Position Paper (citations and references included)",
-            "Critique Paper",
-            "Case Study",
-            "Academic Reports (Narrative/Accomplishment/etc.)",
+            "Essays",
+            "Reflection Papers",
+            "Reaction Papers",
+            "Position Papers",
+            "Critique Papers",
+            "Case Studies",
+            "Concept Papers",
+            "Academic Reports",
+            "OJT Journal Entry",
+            "Business Plan",
+            "Marketing Plan",
+            "Event Plan",
             "Complete Feasibility Study Assistance",
             "Senior High School Research",
-            "OJT Journal",
-            "Daily Journal Entry",
-            "Weekly Journal Entry",
-            "Business Plan",
-            "Event Plan",
-            "Concept Paper",
-            "Presentation Slides"
+            "Reaction and Analysis Papers",
+            "Learning Activity Sheets",
+            "Modules and Worksheets",
+            "Summaries and Syntheses",
+            "Chapter Summaries",
+            "Book and Article Reviews",
+            "Literature Reviews",
+            "Annotated Bibliographies",
+            "Oral Presentation Scripts",
+            "Academic PowerPoint Presentations"
         ]
     },
 
@@ -361,18 +365,26 @@ const serviceDetails = {
         number: "03",
         title: "Professional Documents",
         items: [
-            "Resume/CV (ATS-Friendly, with application/cover letter)",
+            "Resume/Curriculum Vitae (ATS Friendly with Cover/Application Letter)",
             "Letter of Intent",
             "Letter of Request",
-            "Recommendation Letter (Drafting)",
-            "Personal Statement",
-            "Statement of Purpose (SOP)",
-            "Business Letters",
             "Formal Letters",
-            "Invitation Letters/Content",
+            "Business Letter",
+            "Invitation Letter/Content",
             "Authorization Letter",
+            "Personal Statements",
+            "Statement of Purpose (SOP)",
+            "Professional Profiles",
             "Memorandum of Agreement (Drafting)",
-            "Certificates Content"
+            "Certificates Content",
+            "Product Costing",
+            "Minutes of the Meeting",
+            "Accomplishment Reports",
+            "Narrative Reports",
+            "Activity Reports",
+            "Financial Reports",
+            "Professional Presentations",
+            "Document Formatting and Organization"
         ]
     },
 
@@ -380,6 +392,12 @@ const serviceDetails = {
         number: "04",
         title: "Web Development",
         items: [
+            "A. Web-based System",
+            "Landing Pages",
+            "Static Website",
+            "Portfolio Websites",
+            "Personal Websites",
+            "Business Websites",
             "System Development (PHP/MySQL)",
             "Laravel Development",
             "Front-End Development (HTML, CSS, JavaScript)",
@@ -388,14 +406,26 @@ const serviceDetails = {
             "Deployment Guide",
             "Maintenance Guide",
             "Bug Fixing Support",
-            "System Documentation",
+            "Responsive Website Layouts",
+            "Website Styling and Customization",
+            "Website Content Layout",
+            "Navigation Bar Development",
+            "Interactive Buttons and Elements",
+            "Popup and Modal Development",
+            "Basic Form Validation",
+            "Website Animations and Effects",
+            "Basic Database Integration",
+            "Basic Website Setup and Hosting",
+            "B. Documentation",
+            "Chapter 1–5 Assistance",
             "System Requirements Specification (SRS)",
             "System Design (DFD, ERD, UML)",
             "User Interface Design",
             "User Manual",
             "Testing Documentation",
             "Implementation Guide",
-            "Editing & Formatting"
+            "Turnitin Check",
+            "Editing and Formatting"
         ]
     },
 
@@ -405,54 +435,162 @@ const serviceDetails = {
         items: [
             "Pubmats",
             "Social Media Graphics",
-            "Posters and Flyers",
+            "Posters",
+            "Flyers",
+            "Event Posters",
+            "Promotional Materials",
             "Presentation Design",
+            "PowerPoint Layout Design",
             "Branding Materials",
+            "Logo Concepts",
+            "Business Cards",
+            "Certificates",
+            "Invitations",
+            "Brochures",
+            "Infographics",
+            "Digital Banners",
+            "Social Media Covers",
             "Promotional Visuals",
-            "Simple Layout and Visual Design"
+            "Simple Layout Design",
+            "Photo Collages",
+            "Basic Photo Editing",
+            "Typography and Text Layout",
+            "Marketing Graphics"
+        ]
+    },
+
+    more: {
+        number: "06",
+        title: "And Many More",
+        items: [
+            "Content Creation",
+            "Digital Marketing Assistance",
+            "Creative and Digital Projects",
+            "Custom Document Requests",
+            "Other Project-Based Assistance"
         ]
     }
 };
 
-const serviceCards = document.querySelectorAll(".service-card-interactive");
-const serviceDetailsBox = document.getElementById("service-details");
-const serviceDetailsClose = document.getElementById("service-details-close");
-const serviceDetailsNumber = document.getElementById("service-details-number");
-const serviceDetailsTitle = document.getElementById("service-details-title");
-const serviceDetailsList = document.getElementById("service-details-list");
 
-serviceCards.forEach(function (card) {
+/* =========================================
+   SERVICE CARDS CLICK & POPUP
+   Individual boxes, no bullet points
+   ========================================= */
 
-    card.addEventListener("click", function () {
+(() => {
+    function initServicePopup() {
+        const cards = document.querySelectorAll(".service-card-interactive");
+        const popup = document.getElementById("service-details");
+        const closeButton = document.getElementById("service-details-close");
+        const numberElement = document.getElementById("service-details-number");
+        const titleElement = document.getElementById("service-details-title");
+        const listElement = document.getElementById("service-details-list");
 
-        const service = serviceDetails[card.dataset.service];
-
-        serviceDetailsNumber.textContent = service.number;
-        serviceDetailsTitle.textContent = service.title;
-
-        serviceDetailsList.innerHTML = service.items
-            .map(function (item) {
-                return `<p>↳ ${item}</p>`;
-            })
-            .join("");
-
-        serviceDetailsBox.classList.add("active");
-
-    });
-
-});
-
-if (serviceDetailsClose && serviceDetailsBox) {
-    serviceDetailsClose.addEventListener("click", function () {
-        serviceDetailsBox.classList.remove("active");
-    });
-
-    serviceDetailsBox.addEventListener("click", function (event) {
-        if (event.target === serviceDetailsBox) {
-            serviceDetailsBox.classList.remove("active");
+        if (!cards.length || !popup || !closeButton ||
+            !numberElement || !titleElement || !listElement) {
+            console.error(
+                "Service popup setup failed. Check the service card classes and popup HTML IDs."
+            );
+            return;
         }
-    });
-}
+
+        function closeServicePopup() {
+            popup.classList.remove("active");
+            document.body.classList.remove("service-popup-open");
+        }
+
+        function openServicePopup(serviceKey) {
+            const service = serviceDetails[serviceKey];
+
+            if (!service) {
+                console.error("Service details not found for:", serviceKey);
+                return;
+            }
+
+            numberElement.textContent = service.number;
+            titleElement.textContent = service.title;
+
+            const forteContainer = document.createElement("div");
+            forteContainer.className = "service-forte-grid";
+
+            service.items.forEach((item) => {
+                const forteBox = document.createElement("div");
+                forteBox.className = "service-forte-item";
+
+                if (
+                    item === "A. Web-based System" ||
+                    item === "B. Documentation"
+                ) {
+                    forteBox.classList.add("service-forte-heading");
+                    forteBox.textContent = item;
+                } else {
+                    const match = item.match(/^(.*?)\s*(\([^)]*\))$/);
+
+                    if (match) {
+                        forteBox.appendChild(
+                            document.createTextNode(match[1] + " ")
+                        );
+
+                        const note = document.createElement("small");
+                        note.textContent = match[2];
+                        forteBox.appendChild(note);
+                    } else {
+                        forteBox.textContent = item;
+                    }
+                }
+
+                forteContainer.appendChild(forteBox);
+            });
+
+            listElement.replaceChildren(forteContainer);
+            popup.classList.add("active");
+            document.body.classList.add("service-popup-open");
+        }
+
+        cards.forEach((card) => {
+            card.addEventListener("click", (event) => {
+                if (event.target.closest("a")) return;
+                openServicePopup(card.dataset.service);
+            });
+
+            card.setAttribute("tabindex", "0");
+            card.setAttribute("role", "button");
+
+            card.addEventListener("keydown", (event) => {
+                if (event.key === "Enter" || event.key === " ") {
+                    if (event.target.closest("a")) return;
+
+                    event.preventDefault();
+                    openServicePopup(card.dataset.service);
+                }
+            });
+        });
+
+        closeButton.addEventListener("click", (event) => {
+            event.stopPropagation();
+            closeServicePopup();
+        });
+
+        popup.addEventListener("click", (event) => {
+            if (event.target === popup) {
+                closeServicePopup();
+            }
+        });
+
+        document.addEventListener("keydown", (event) => {
+            if (event.key === "Escape") {
+                closeServicePopup();
+            }
+        });
+    }
+
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", initServicePopup);
+    } else {
+        initServicePopup();
+    }
+})();
 
 /* =====================================
    HWANWRITES TERMS POPUP BEHAVIOR

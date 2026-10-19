@@ -2438,53 +2438,83 @@ footer p {
     min-height: 230px;
 }
 
+
 /* =========================================
    SERVICE DETAILS LIST POLISH
    ========================================= */
 
 #service-details-list {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
 }
 
-#service-details-list p {
+/* TWO-COLUMN SERVICE BOXES */
+#service-details-list .service-forte-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+}
+
+/* INDIVIDUAL SERVICE BOXES */
+#service-details-list .service-forte-item {
     display: flex;
     align-items: center;
-    min-height: 48px;
-    padding: 12px 14px;
+    min-width: 0;
+    min-height: 52px;
+    padding: 14px 18px;
     margin: 0;
+    box-sizing: border-box;
+
     border: 1px solid var(--border-color);
     border-left: 2px solid var(--accent-color);
     border-radius: 4px;
+
     background: #202020;
     color: var(--secondary-color);
     font-size: 13px;
-    line-height: 1.5;
-    transition: all 0.25s ease;
+    line-height: 1.6;
+
+    overflow-wrap: break-word;
+    word-break: normal;
+
+    cursor: default;
+    pointer-events: none;
+    box-shadow: none;
+    transform: none;
+    transition: none;
 }
 
-#service-details-list p:hover {
-    border-color: rgba(21, 122, 40, 0.55);
-    color: var(--white);
-    transform: translateX(3px);
+/* WEB DEVELOPMENT HEADINGS */
+#service-details-list .service-forte-heading {
+    grid-column: 1 / -1;
+    box-sizing: border-box;
+    padding: 12px 14px;
+    background: #252525;
+    color: var(--accent-color);
+    border-left: 2px solid var(--accent-color);
+    border-radius: 4px;
+    font-weight: 600;
 }
 
+/* MOBILE LAYOUT */
 @media (max-width: 768px) {
-
-    .service-container {
-        grid-template-columns: 1fr;
-    }
-
-    #service-details-list {
+    #service-details-list .service-forte-grid {
         grid-template-columns: 1fr;
     }
 
     .service-details-content {
         padding: 35px 22px;
     }
+}
 
-}/* =========================================
+/* =========================================
    SERVICES SECTION SPACING
    ========================================= */
 
@@ -5845,7 +5875,7 @@ body {
     }
 }
 
-```css
+
 /* =========================================
    HWANWRITES — EMERALD CARD DESIGN
 ========================================= */
@@ -7119,5 +7149,350 @@ button {
 @media (prefers-reduced-motion: reduce) {
     .profile-hero .profile-photo {
         transition: none;
+    }
+}
+
+/* OPTION 2 — ELEGANT CORNER ACCENT */
+.service-card,
+.process-card,
+.milestone-card,
+.trust-card,
+.testimonial-card,
+.portfolio-card,
+.certificate-card {
+    border: 1px solid rgba(111, 159, 120, 0.22);
+    border-radius: 14px;
+    transition: border-color 0.3s ease, transform 0.3s ease;
+}
+
+.service-card::before,
+.process-card::before,
+.milestone-card::before,
+.trust-card::before,
+.testimonial-card::before,
+.portfolio-card::before,
+.certificate-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 20px;
+    width: 42px;
+    height: 2px;
+    background: rgba(143, 186, 149, 0.65);
+    pointer-events: none;
+}
+
+.service-card:hover,
+.process-card:hover,
+.milestone-card:hover,
+.trust-card:hover,
+.testimonial-card:hover,
+.portfolio-card:hover,
+.certificate-card:hover {
+    border-color: rgba(143, 186, 149, 0.48);
+    transform: translateY(-3px);
+}
+
+.service-forte-list {
+    display: none;
+}
+
+#service-details-list small {
+    font-size: 0.78em;
+    font-weight: 400;
+}
+
+
+/* =========================================
+   SERVICE DETAILS POPUP
+   ========================================= */
+
+.service-details {
+    overflow-y: auto;
+}
+
+.service-details-content {
+    width: min(900px, 94vw);
+    max-width: 900px;
+    max-height: 88vh;
+    padding: 42px 44px;
+    box-sizing: border-box;
+    overflow-y: auto;
+}
+
+/* =========================================
+   SERVICE FORTE BOXES
+   ========================================= */
+
+.service-forte-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.service-forte-item {
+    display: flex;
+    align-items: center;
+    min-width: 0;
+    min-height: 54px;
+    padding: 14px 18px;
+    box-sizing: border-box;
+
+    border: 1px solid #343b35;
+    border-left: 2px solid #6f9f78;
+    border-radius: 6px;
+
+    background: #202120;
+    color: #c8d0ca;
+
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.6;
+
+    overflow-wrap: break-word;
+    word-break: normal;
+
+    cursor: default;
+    pointer-events: none;
+    user-select: text;
+
+    box-shadow: none;
+    transform: none;
+    transition: none;
+}
+
+.service-forte-item small {
+    margin-left: 5px;
+    color: #aeb8b0;
+    font-size: 11px;
+    line-height: 1.5;
+}
+
+.service-forte-heading {
+    grid-column: 1 / -1;
+    padding: 12px 14px;
+
+    background: #252a26;
+    color: #8fbd98;
+
+    font-weight: 600;
+    border-left: 2px solid #6f9f78;
+    border-radius: 6px;
+}
+
+/* KEEP BOXES NON-CLICKABLE IN APPEARANCE */
+.service-forte-item:hover,
+.service-forte-item:focus,
+.service-forte-item:active {
+    background: #202120;
+    color: #c8d0ca;
+    border-color: #343b35;
+    border-left-color: #6f9f78;
+    box-shadow: none;
+    transform: none;
+    outline: none;
+}
+
+/* =========================================
+   RESPONSIVE LAYOUT
+   ========================================= */
+
+@media (max-width: 600px) {
+    .service-details-content {
+        width: 94vw;
+        max-width: 94vw;
+        padding: 38px 18px 24px;
+    }
+
+    .service-forte-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .service-forte-item {
+        min-height: 48px;
+        padding: 12px 14px;
+    }
+}
+
+/* AND MANY MORE CARD */
+.service-card-more,
+.service-card-more:hover,
+.service-card-more:focus,
+.service-card-more:visited {
+    text-decoration: none;
+}
+
+/* REMOVE UNDERLINES INSIDE THE CARD */
+.service-card-more h3,
+.service-card-more p,
+.service-card-more strong {
+    text-decoration: none;
+}
+
+/* DESCRIPTION FONT AND SPACING */
+.service-card-more .service-more-text {
+    font-size: inherit;
+    line-height: inherit;
+    font-weight: inherit;
+    margin-top: 8px;
+    margin-bottom: 0;
+}
+
+.service-card-more .service-more-text strong {
+    font-size: inherit;
+    font-weight: 600;
+}
+
+
+/* ==================================================
+   HWANWRITES — GLOBAL SECTION DESIGN SYSTEM
+   Homepage + Profile Page
+   Adjust fonts and vertical section spacing here.
+   Preserves existing bold/unbold formatting.
+   ================================================== */
+
+:root {
+    /* 1. SECTION LABELS
+       Example: TRUST & FEEDBACK / SELECTED WORKS */
+    --uniform-label-size: 12px;
+    --uniform-label-line-height: 1.5;
+
+    /* 2. MAIN SECTION HEADINGS
+       Example: Real transactions. Genuine feedback. */
+    --uniform-heading-size: clamp(1.7rem, 4vw, 2.5rem);
+    --uniform-heading-line-height: 1.25;
+
+    /* 3. SECTION DESCRIPTIONS */
+    --uniform-description-size: 0.98rem;
+    --uniform-description-line-height: 1.7;
+
+    /* 4. TOP AND BOTTOM SECTION SPACING */
+    --uniform-section-space-desktop: 110px;
+    --uniform-section-space-tablet: 80px;
+    --uniform-section-space-mobile: 65px;
+}
+
+/* ==================================================
+   5. TRUST & FEEDBACK — REFERENCE SECTION
+   ================================================== */
+
+#trust .trust-section-heading .section-label {
+    font-size: var(--uniform-label-size);
+    line-height: var(--uniform-label-line-height);
+}
+
+#trust .trust-section-heading h2 {
+    font-size: var(--uniform-heading-size);
+    line-height: var(--uniform-heading-line-height);
+}
+
+#trust .trust-section-heading > p:last-child {
+    font-size: var(--uniform-description-size);
+    line-height: var(--uniform-description-line-height);
+}
+
+/* ==================================================
+   6. HOMEPAGE — PORTFOLIO HEADER
+   ================================================== */
+
+.portfolio .section-label,
+.portfolio .portfolio-section-heading .section-label,
+.portfolio .portfolio-heading .section-label {
+    font-size: var(--uniform-label-size);
+    line-height: var(--uniform-label-line-height);
+}
+
+.portfolio .section-heading h2,
+.portfolio .portfolio-section-heading h2,
+.portfolio .portfolio-heading h2 {
+    font-size: var(--uniform-heading-size);
+    line-height: var(--uniform-heading-line-height);
+}
+
+.portfolio .section-heading > p:not(.section-label),
+.portfolio .portfolio-section-heading > p:not(.section-label),
+.portfolio .portfolio-heading > p:not(.section-label) {
+    font-size: var(--uniform-description-size);
+    line-height: var(--uniform-description-line-height);
+}
+
+/* ==================================================
+   7. PROFILE PAGE — SECTION LABELS
+   ================================================== */
+
+.profile-journey .section-label,
+.profile-story .section-label,
+.profile-tools .section-label,
+.profile-certificates .section-label,
+.profile-gallery .section-label,
+.profile-milestones .section-label,
+.profile-contact .section-label {
+    font-size: var(--uniform-label-size);
+    line-height: var(--uniform-label-line-height);
+}
+
+/* ==================================================
+   8. PROFILE PAGE — MAIN HEADINGS
+   ================================================== */
+
+.profile-journey h2,
+.profile-story h2,
+.profile-tools h2,
+.profile-certificates h2,
+.profile-gallery h2,
+.profile-milestones h2,
+.profile-contact h2 {
+    font-size: var(--uniform-heading-size);
+    line-height: var(--uniform-heading-line-height);
+}
+
+/* ==================================================
+   9. PROFILE PAGE — DESCRIPTIONS
+   ================================================== */
+
+.profile-journey .section-description,
+.profile-story .section-description,
+.profile-tools .section-description,
+.profile-certificates .section-description,
+.profile-gallery .section-description,
+.profile-milestones .section-description,
+.profile-contact .section-description {
+    font-size: var(--uniform-description-size);
+    line-height: var(--uniform-description-line-height);
+}
+
+/* ==================================================
+   10. UNIFORM TOP AND BOTTOM SPACING
+   Only vertical padding is changed.
+   Existing horizontal padding is preserved.
+   ================================================== */
+
+section {
+    padding-top: var(--uniform-section-space-desktop);
+    padding-bottom: var(--uniform-section-space-desktop);
+}
+
+/* ==================================================
+   11. TABLET SPACING
+   ================================================== */
+
+@media (max-width: 768px) {
+    section {
+        padding-top: var(--uniform-section-space-tablet);
+        padding-bottom: var(--uniform-section-space-tablet);
+    }
+}
+
+/* ==================================================
+   12. MOBILE SPACING
+   ================================================== */
+
+@media (max-width: 420px) {
+    section {
+        padding-top: var(--uniform-section-space-mobile);
+        padding-bottom: var(--uniform-section-space-mobile);
     }
 }
